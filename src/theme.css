@@ -1,0 +1,25 @@
+:root[data-theme="light"] {
+  --background: white;
+  --text: black;
+  --card-bg: white;
+  --border: #ddd;
+  
+}
+
+:root[data-theme="dark"] {
+  --background: #111827;
+  --text: white;
+  --card-bg: #1f2937;
+  --border: #374151;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button{
+  color: white;
+  background-color: black;
+}
+
