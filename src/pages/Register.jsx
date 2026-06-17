@@ -37,9 +37,28 @@ const handleSubmit = async (e) => {
 
 
 return(
-    <div>
+    <div style={{
+      display:"flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+    }}>
+    <div  style={{
+        
+        alignItems:"center",  
+        padding: "50px",
+        border: "1px solid #ccc",
+        borderRadius: "10px",
+      }}>
         <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
+        <form
+    style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "2px",
+  }}
+  
+  onSubmit={handleSubmit}>
     <input 
     type="text"
     name="name"
@@ -70,12 +89,15 @@ return(
             <p>
                 {error}
             </p>
-        )}
+            )}
+
+            <p>If you already have an account?Login.</p>
         <button onClick={() => navigate("/Login")}>
-         Login
+        To Login
         </button>
 
         </form>
+    </div>
     </div>
 )
 }

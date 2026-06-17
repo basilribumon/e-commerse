@@ -33,20 +33,42 @@ const handleSubmit = async (
 
   console.log(result);
 
-  if (
-    loginUser.fulfilled.match(
-      result
-    )
-  ) {
-    navigate("/");
-  }
+ if (
+  loginUser.fulfilled.match(
+    result
+  ) &&
+  result.payload
+) {
+  navigate("/");
+}
 };
 
 
     return(
-        <div>
+      <div style={{
+      display:"flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+    }}>
+        
+      
+        <div 
+        style={{
+        
+        alignItems:"center",  
+        padding: "20px",
+        border: "1px solid #ccc",
+        borderRadius: "10px",
+      }}>
             <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form 
+            style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "2px",
+  }}
+            onSubmit={handleSubmit}>
         <input 
         type="email"
         name="email"
@@ -68,13 +90,23 @@ const handleSubmit = async (
          </button>
          
 
-         {error &&(
-            <p>{error}</p>
-         )}
+         {error && (
+  <p
+    style={{
+      color: "red",
+      marginTop: "10px",
+    }}
+  >
+    {error}
+  </p>
+)}
+
+         <p>If you dont have an account?Register.</p>
         <button onClick={() => navigate("/register")}>
-        Register
+        To Register 
         </button>
             </form>
+        </div>
         </div>
     )
 }

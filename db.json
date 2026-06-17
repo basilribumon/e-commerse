@@ -1,48 +1,77 @@
 {
   "products": [
     {
-      "id": 1,
-      "title": "iPhone 15",
-      "price": 999,
-      "category": "Electronics",
-      "image": "https://picsum.photos/200?random=1",
-      "stock": 10
+      "id": "1",
+      "title": "iPhone 14",
+      "price": 200,
+      "category": "IOS",
+      "image": "/images/iphone14.png",
+      "stock": 10,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
     },
     {
-      "id": 2,
-      "title": "Nike Shoes",
+      "id": "2",
+      "title": "Iphone X",
       "price": 120,
-      "category": "Fashion",
-      "image": "https://picsum.photos/200?random=2",
-      "stock": 15
+      "category": "IOS",
+      "image": "/images/iphoneX.png",
+      "stock": 15,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
     },
     {
-      "id": 3,
-      "title": "MacBook Pro",
-      "price": 1800,
-      "category": "Electronics",
-      "image": "https://picsum.photos/200?random=3",
-      "stock": 5
+      "id": "3",
+      "title": "Vivo X300 Pro",
+      "price": 150,
+      "category": "Vivo",
+      "image": "/images/vivoX300pro.png",
+      "stock": 5,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
     },
     {
-      "id": 4,
-      "title": "Adidas T-Shirt",
-      "price": 50,
-      "category": "Fashion",
-      "image": "https://picsum.photos/200?random=4",
-      "stock": 0
+      "id": "4",
+      "title": "Iphone 17",
+      "price": 200,
+      "category": "IOS",
+      "image": "/images/iphone17.png",
+      "stock": 2,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
     },
     {
-      "id": 5,
-      "title": "Samsung TV",
-      "price": 700,
-      "category": "Electronics",
-      "image": "https://picsum.photos/200?random=5",
-      "stock": 8
+      "id": "5",
+      "title": "Iphone 13",
+      "price": 180,
+      "category": "IOS",
+      "image": "/images/iphone13.png",
+      "stock": 8,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+    },
+    {
+      "id": "6",
+      "title": "Samsung galaxy A24",
+      "price": 170,
+      "category": "Samsung",
+      "image": "/images/samsunga24.png",
+      "stock": 8,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+    },
+    {
+      "id": "7",
+      "title": "Redme note 10 pro",
+      "price": 100,
+      "category": "Redme",
+      "image": "/images/redmenote10pro.png",
+      "stock": 8,
+      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
     }
   ],
-
-  "users": [],
-
-  "orders": []
+  "users": [
+    {
+      "name": "basil",
+      "email": "basil@gmail.com",
+      "password": "123456789",
+      "id": "d8htrXjHztQ"
+    }
+  ],
+  "orders": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

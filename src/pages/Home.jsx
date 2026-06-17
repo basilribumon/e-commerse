@@ -1,31 +1,26 @@
 import { useEffect, useState } from "react";
-import {
-  useDispatch,
-  useSelector,
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { fetchProducts } from "../redux/slices/ProductSlice";
 import { logout } from "../redux/slices/authSlice";
 
 import ProductCard from "../components/ProductCard";
+import Navbar from "../components/Navbar";
 
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {
-    products,
-    loading,
-    error,
-  } = useSelector(
-    (state) => state.products
-  );
+  const { products, loading, error } =
+    useSelector(
+      (state) => state.products
+    );
 
   const [currentPage, setCurrentPage] =
     useState(1);
 
-  const productsPerPage = 5;
+  const productsPerPage = 6;
 
   const [searchTerm, setSearchTerm] =
     useState("");
@@ -58,17 +53,17 @@ function Home() {
     return <h2>{error}</h2>;
   }
 
-  // Search
   let filteredProducts =
     products.filter((product) =>
       product.title
         .toLowerCase()
         .includes(
-          searchTerm.toLowerCase()
+          searchTerm
+            .toLowerCase()
+            .trim()
         )
     );
 
-  // Filter
   if (
     selectedCategory !== "All"
   ) {
@@ -80,7 +75,6 @@ function Home() {
       );
   }
 
-  // Sort
   if (
     sortOrder ===
     "lowToHigh"
@@ -105,18 +99,6 @@ function Home() {
     );
   }
 
-  // Empty State
-  if (
-    filteredProducts.length === 0
-  ) {
-    return (
-      <h2>
-        No Products Found
-      </h2>
-    );
-  }
-
-  // Pagination
   const lastProductIndex =
     currentPage *
     productsPerPage;
@@ -141,98 +123,29 @@ function Home() {
     <div
       style={{
         padding: "20px",
-        textAlign:"center"
+        textAlign: "center",
       }}
     >
-      <h1
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Products
-      </h1>
+      <Navbar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedCategory={
+          selectedCategory
+        }
+        setSelectedCategory={
+          setSelectedCategory
+        }
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        handleLogout={
+          handleLogout
+        }
+        setCurrentPage={
+          setCurrentPage
+        }
+      />
 
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "20px",
-          flexWrap: "wrap",
-          justifyContent:
-            "center",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(
-              e.target.value
-            );
-
-            setCurrentPage(1);
-          }}
-        />
-
-        <select
-          value={
-            selectedCategory
-          }
-          onChange={(e) => {
-            setSelectedCategory(
-              e.target.value
-            );
-
-            setCurrentPage(1);
-          }}
-        >
-          <option value="All">
-            All Categories
-          </option>
-
-          <option value="Electronics">
-            Electronics
-          </option>
-
-          <option value="Fashion">
-            Fashion
-          </option>
-        </select>
-
-        <select
-          value={sortOrder}
-          onChange={(e) => {
-            setSortOrder(
-              e.target.value
-            );
-
-            setCurrentPage(1);
-          }}
-        >
-          <option value="">
-            Sort By Price
-          </option>
-
-          <option value="lowToHigh">
-            Price:
-            Low → High
-          </option>
-
-          <option value="highToLow">
-            Price:
-            High → Low
-          </option>
-        </select>
-
-        <button
-          onClick={
-            handleLogout
-          }
-        >
-          Logout
-        </button>
-      </div>
+      <h2>Products</h2>
 
       <div
         style={{
@@ -242,58 +155,67 @@ function Home() {
           gap: "20px",
         }}
       >
-        {currentProducts.map(
-          (product) => (
-            <ProductCard
-              key={product.id}
-              product={
-                product
-              }
-            />
+        {currentProducts.length >
+        0 ? (
+          currentProducts.map(
+            (product) => (
+              <ProductCard
+                key={product.id}
+                product={
+                  product
+                }
+              />
+            )
           )
+        ) : (
+          <h2>
+            No Products Found
+          </h2>
         )}
       </div>
 
-      <div
-        style={{
-          marginTop: "20px",
-          textAlign: "center",
-        }}
-      >
-        <button
-          disabled={
-            currentPage === 1
-          }
-          onClick={() =>
-            setCurrentPage(
-              currentPage - 1
-            )
-          }
+      {filteredProducts.length >
+        0 && (
+        <div
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+          }}
         >
-          Previous
-        </button>
+          <button
+            disabled={
+              currentPage === 1
+            }
+            onClick={() =>
+              setCurrentPage(
+                currentPage - 1
+              )
+            }
+          >
+            Previous
+          </button>
 
-        <span>
-          {" "}
-          Page{" "}
-          {currentPage} of{" "}
-          {totalPages}{" "}
-        </span>
+          <span>
+            {" "}
+            Page {currentPage} of{" "}
+            {totalPages}{" "}
+          </span>
 
-        <button
-          disabled={
-            currentPage ===
-            totalPages
-          }
-          onClick={() =>
-            setCurrentPage(
-              currentPage + 1
-            )
-          }
-        >
-          Next
-        </button>
-      </div>
+          <button
+            disabled={
+              currentPage ===
+              totalPages
+            }
+            onClick={() =>
+              setCurrentPage(
+                currentPage + 1
+              )
+            }
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }

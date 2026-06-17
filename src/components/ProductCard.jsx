@@ -14,8 +14,8 @@ function ProductCard({ product }) {
         border: "1px solid #ddd",
         padding: "15px",
         borderRadius:"10px"
-      }}
-    >
+      }}>
+      <p>{product.category}</p>
       <img
         src={product.image}
         alt={product.title}
@@ -24,33 +24,26 @@ function ProductCard({ product }) {
 
       <h3>{product.title}</h3>
 
-      <p>${product.price}</p>
+      <p>₹{product.price}</p>
 
-      <p>{product.category}</p>
+       
 
-      <button
-        onClick={() =>
-          dispatch(addToCart(product))
-        }
-      >
-        Buy
-      </button><br />
-      <button
+      <button style={{width:"50%",height:"30px",backgroundColor:"white",color:"black",fontSize:"17px"}} 
+      onClick={() =>dispatch(addToCart(product))}>Buy</button><br />
+   
+   
+   
+     <button
   onClick={() =>
-    navigate(
-      `/product/${product.id}`
-    )
+    navigate(`/productdetails/${product.id}`)
   }
 >
   View Details
 </button><br />
-      <button
-        onClick={() =>
-          dispatch(addToWishlist(product))
-        }
-      >
-        Add to Wishlist
-      </button>
+
+
+
+      <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
     </div>
   );
 }

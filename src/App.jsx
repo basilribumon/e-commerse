@@ -12,18 +12,17 @@ import Wishlist from "./pages/Wishlist";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 
+
 import ProductDetails from "./pages/ProductDetails";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ThemeToggle from "./components/ThemeToggle";
 
+
 function App() {
   return (
     <BrowserRouter>
-
-      {/* Theme Toggle Button */}
-      <ThemeToggle />
-
+    <ThemeToggle />
       <Routes>
 
         <Route
@@ -39,6 +38,11 @@ function App() {
         <Route
           path="/register"
           element={<Register />}
+        />
+
+       <Route 
+        path="/productdetails/:id"
+        element={<ProductDetails />}
         />
 
         <Route
