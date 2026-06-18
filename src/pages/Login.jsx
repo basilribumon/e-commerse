@@ -33,13 +33,13 @@ const handleSubmit = async (
 
   console.log(result);
 
- if (
-  loginUser.fulfilled.match(
-    result
-  ) &&
+if (
+  loginUser.fulfilled.match(result) &&
   result.payload
 ) {
   navigate("/");
+
+  window.location.reload();
 }
 };
 
@@ -86,6 +86,7 @@ const handleSubmit = async (
 
          <button type="submit">
             {loading ? "Logging in..":"Login"}
+            
             
          </button>
          

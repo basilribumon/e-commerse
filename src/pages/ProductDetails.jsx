@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/slices/ProductSlice";
 import Navbarr from "../components/Navbartwo";
+import { addToCart } from "../redux/slices/CartSlice";
+import { addToWishlist } from "../redux/slices/wishlistSlice";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -97,22 +99,38 @@ console.log("Found Product:", product);
         </p>
 
         <button
-          style={{
-            padding: "10px 20px",
-            marginRight: "10px",
-          }}
-        >
-          Add to Cart
-        </button>
+  style={{
+    padding: "10px 20px",
+    marginRight: "10px",
+  }}
+  onClick={() => {
+    dispatch(addToCart(product));
+
+    alert(
+      "✅ Product added to cart"
+    );
+  }}
+>
+  Add to Cart
+</button>
 
         <button
-          style={{
-            padding: "10px 20px",
-            marginRight: "10px",
-          }}
-        >
-          Add to Wishlist
-        </button>
+  style={{
+    padding: "10px 20px",
+    marginRight: "10px",
+  }}
+  onClick={() => {
+    dispatch(
+      addToWishlist(product)
+    );
+
+    alert(
+      "❤️ Product added to wishlist"
+    );
+  }}
+>
+  Add to Wishlist
+</button>
 
         <button
           style={{

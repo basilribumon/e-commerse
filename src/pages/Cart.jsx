@@ -1,10 +1,23 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
+import {
+  removeFromCart,
+  clearCart,
+} from "../redux/slices/CartSlice";
 
 function Cart() {
+  const dispatch =
+    useDispatch();
+
+    const navigate = useNavigate();
+
   const { cartItems } =
     useSelector(
       (state) => state.cart
     );
+    
 
   const totalPrice =
     cartItems.reduce(
@@ -14,10 +27,9 @@ function Cart() {
     );
 
   const handleBuyAll = () => {
-    alert(
-      "Order Placed Successfully!"
-    );
-  };
+  alert("Order Placed Successfully!");
+  navigate("/checkout");
+};
 
   return (
     <div
@@ -33,40 +45,78 @@ function Cart() {
         </h2>
       ) : (
         <>
-        
           {cartItems.map(
             (item) => (
               <div
                 key={item.id}
                 style={{
+                  display: "flex",
+                  alignItems:
+                    "center",
+                  gap: "20px",
                   border:
                     "1px solid #ddd",
                   margin:
                     "10px 0",
                   padding:
-                    "7px",
+                    "15px",
+                  borderRadius:
+                    "10px",
                 }}
               >
                 <img
-                src={item.image}
-                alt={item.title}
-                width="80"
-                height="80"
-                style={{
-                    objectFit: "cover",
-                    borderRadius: "5px",
-                }}
-                 />
-                
-                <h3>
-                  {item.title}
-                </h3>
+                  src={
+                    item.image
+                  }
+                  alt={
+                    item.title
+                  }
+                  width="100"
+                  height="100"
+                  style={{
+                    objectFit:
+                      "cover",
+                    borderRadius:
+                      "10px",
+                  }}
+                />
 
-                <p>
-                  ₹{item.price}
-                </p>
+                <div>
+                  <h3>
+                    {
+                      item.title
+                    }
+                  </h3>
 
-                <p>{item.description}</p>
+                  <p>
+                    ₹
+                    {
+                      item.price
+                    }
+                  </p>
+
+                  <p>
+                    {
+                      item.description
+                    }
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        removeFromCart(
+                          item.id
+                        )
+                      );
+
+                      alert(
+                        "❌ Item removed from cart"
+                      );
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             )
           )}
@@ -79,6 +129,7 @@ function Cart() {
           <button
             onClick={
               handleBuyAll
+
             }
           >
             Buy All

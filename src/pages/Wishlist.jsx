@@ -7,6 +7,7 @@ import {
 
 import Navbar from
 "../components/Navbar";
+import { addToCart } from "../redux/slices/CartSlice";
 
 function Wishlist() {
   const dispatch =
@@ -40,8 +41,7 @@ function Wishlist() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fill,minmax(250px,1fr))",
+            gridTemplateColumns:"repeat(auto-fill,minmax(250px,1fr))",
             gap: "20px",
           }}
         >
@@ -90,6 +90,19 @@ function Wishlist() {
                 >
                   Remove
                 </button>
+                <button
+  onClick={() => {
+    dispatch(
+      addToCart(item)
+    );
+
+    alert(
+      "✅ Product added to cart"
+    );
+  }}
+>
+  Move to Cart
+</button>
               </div>
             )
           )}

@@ -16,6 +16,7 @@ function ProductCard({ product }) {
     padding: "15px",
     borderRadius: "10px",
     position: "relative",
+    backgroundColor:"#d2d7dfff"
   }}
 >
        <button
@@ -33,10 +34,14 @@ function ProductCard({ product }) {
 </button>
       <p>{product.category}</p>
       <img
-        src={product.image}
-        alt={product.title}
-        width="150"
-      />
+  src={product.image}
+  alt={product.title}
+  width="100"
+  height="100"
+  style={{
+    objectFit: "contain",
+  }}
+/>
 
       <h3>{product.title}</h3>
 
@@ -45,7 +50,10 @@ function ProductCard({ product }) {
        
 
       <button style={{width:"50%",height:"30px",backgroundColor:"white",color:"black",fontSize:"17px"}} 
-      onClick={() =>dispatch(addToCart(product))}>Buy</button><br />
+      onClick={() =>{dispatch(addToCart(product))
+        alert("✅ Product added to cart");
+        navigate("/checkout")
+      }}>Buy</button><br />
    
    
    

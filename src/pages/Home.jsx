@@ -20,7 +20,7 @@ function Home() {
   const [currentPage, setCurrentPage] =
     useState(1);
 
-  const productsPerPage = 24;
+  const productsPerPage = 12;
 
   const [searchTerm, setSearchTerm] =
     useState("");
