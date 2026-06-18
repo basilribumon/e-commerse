@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/slices/ProductSlice";
+import Navbarr from "../components/Navbartwo";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -44,6 +45,9 @@ console.log("Found Product:", product);
   }
 
   return (
+
+    <>
+    <Navbarr/>
     <div
       style={{
         padding: "30px",
@@ -53,6 +57,7 @@ console.log("Found Product:", product);
         gap: "50px",
       }}
     >
+      
       <div>
         <img
           src={product.image}
@@ -119,6 +124,7 @@ console.log("Found Product:", product);
         </button>
       </div>
     </div>
+    </>
   );
 }
 

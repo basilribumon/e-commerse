@@ -4,17 +4,33 @@ import { addToCart } from "../redux/slices/CartSlice";
 import { useNavigate } from "react-router-dom";
 
 
+
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
     <div
-      style={{
-        border: "1px solid #ddd",
-        padding: "15px",
-        borderRadius:"10px"
-      }}>
+    style={{
+    border: "1px solid #ddd",
+    padding: "15px",
+    borderRadius: "10px",
+    position: "relative",
+  }}
+>
+       <button
+  style={{
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+  }}
+  onClick={() =>{
+    dispatch( addToWishlist(product))
+    alert("Added to Wishlist")
+  }}
+>
+  ❤️
+</button>
       <p>{product.category}</p>
       <img
         src={product.image}
@@ -43,7 +59,12 @@ function ProductCard({ product }) {
 
 
 
-      <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
+      <button onClick={() => {dispatch(addToCart(product));
+    alert("Added to Cart");
+    }}
+>
+  Add to Cart
+</button>
     </div>
   );
 }

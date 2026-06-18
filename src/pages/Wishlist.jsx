@@ -1,75 +1,100 @@
-import {
-  useDispatch,
-  useSelector,
-} from "react-redux";
+import { useSelector,
+useDispatch } from "react-redux";
 
 import {
   removeFromWishlist,
 } from "../redux/slices/wishlistSlice";
 
-import {
-  addToCart,
-} from "../redux/slices/CartSlice";
+import Navbar from
+"../components/Navbar";
 
 function Wishlist() {
   const dispatch =
     useDispatch();
 
-  const { items } =
-    useSelector(
-      (state) =>
-        state.wishlist
-    );
-
-  if (items.length === 0) {
-    return (
-      <h2>
-        Wishlist is Empty
-      </h2>
-    );
-  }
+  const {
+    wishlistItems,
+  } = useSelector(
+    (state) =>
+      state.wishlist
+  );
 
   return (
-    <div>
-      <h1>Wishlist</h1>
+    <div
+      style={{
+        padding: "20px",
+      }}
+    >
+      <Navbar />
 
-      {items.map((item) => (
+      <h1>
+        My Wishlist
+      </h1>
+
+      {wishlistItems.length ===
+      0 ? (
+        <h3>
+          Wishlist is Empty
+        </h3>
+      ) : (
         <div
-          key={item.id}
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fill,minmax(250px,1fr))",
+            gap: "20px",
+          }}
         >
-          <h3>
-            {item.title}
-          </h3>
+          {wishlistItems.map(
+            (item) => (
+              <div
+                key={item.id}
+                style={{
+                  border:
+                    "1px solid #ddd",
+                  padding:
+                    "15px",
+                }}
+              >
+                <img
+                  src={
+                    item.image
+                  }
+                  alt={
+                    item.title
+                  }
+                  width="150"
+                />
 
-          <p>
-            ${item.price}
-          </p>
+                <h3>
+                  {
+                    item.title
+                  }
+                </h3>
 
-          <button
-            onClick={() =>
-              dispatch(
-                addToCart(
-                  item
-                )
-              )
-            }
-          >
-            Move to Cart
-          </button>
+                <p>
+                  ₹
+                  {
+                    item.price
+                  }
+                </p>
 
-          <button
-            onClick={() =>
-              dispatch(
-                removeFromWishlist(
-                  item.id
-                )
-              )
-            }
-          >
-            Remove
-          </button>
+                <button
+                  onClick={() =>
+                    dispatch(
+                      removeFromWishlist(
+                        item.id
+                      )
+                    )
+                  }
+                >
+                  Remove
+                </button>
+              </div>
+            )
+          )}
         </div>
-      ))}
+      )}
     </div>
   );
 }

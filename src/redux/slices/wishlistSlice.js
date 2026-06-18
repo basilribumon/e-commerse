@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const wishlistItems =
+  JSON.parse(
+    localStorage.getItem("wishlist")
+  ) || [];
+
 const initialState = {
-  items: [],
+  wishlistItems,
 };
 
 const wishlistSlice = createSlice({
@@ -10,15 +15,27 @@ const wishlistSlice = createSlice({
   initialState,
 
   reducers: {
-    addToWishlist: (state, action) => {
-      const exists = state.items.find(
-        (item) =>
-          item.id === action.payload.id
-      );
+    addToWishlist: (
+      state,
+      action
+    ) => {
+      const exists =
+        state.wishlistItems.find(
+          (item) =>
+            item.id ===
+            action.payload.id
+        );
 
       if (!exists) {
-        state.items.push(
+        state.wishlistItems.push(
           action.payload
+        );
+
+        localStorage.setItem(
+          "wishlist",
+          JSON.stringify(
+            state.wishlistItems
+          )
         );
       }
     },
@@ -27,17 +44,29 @@ const wishlistSlice = createSlice({
       state,
       action
     ) => {
-      state.items =
-        state.items.filter(
+      state.wishlistItems =
+        state.wishlistItems.filter(
           (item) =>
-            item.id !== action.payload
+            item.id !==
+            action.payload
         );
+
+      localStorage.setItem(
+        "wishlist",
+        JSON.stringify(
+          state.wishlistItems
+        )
+      );
     },
 
     clearWishlist: (
       state
     ) => {
-      state.items = [];
+      state.wishlistItems = [];
+
+      localStorage.removeItem(
+        "wishlist"
+      );
     },
   },
 });

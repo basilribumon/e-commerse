@@ -1,4 +1,8 @@
-function Navbar({
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
+
+function Navbar({  
   searchTerm,
   setSearchTerm,
   selectedCategory,
@@ -8,6 +12,10 @@ function Navbar({
   handleLogout,
   setCurrentPage,
 }) {
+  const navigate = useNavigate();
+
+  const [showSettings, setShowSettings] =
+    useState(false);
   return (
     <div
   style={{
@@ -84,9 +92,59 @@ function Navbar({
           </option>
         </select>
 
-        <button onClick={handleLogout}>
-          Logout
-        </button>
+        <button
+  onClick={() => navigate("/")}
+>
+  Home
+</button>
+
+<button
+  onClick={() => navigate("/cart")}
+>
+  View Cart
+</button>
+
+<button
+  onClick={() =>
+    navigate("/wishlist")
+  }
+>
+  View Wishlist
+</button>
+
+<div
+  style={{
+    position: "relative",
+  }}
+>
+  <button
+    onClick={() =>
+      setShowSettings(
+        !showSettings
+      )
+    }
+  >
+    Settings ⚙️
+  </button>
+
+{showSettings && (
+  <div
+    style={{
+      position: "absolute",
+      top: "40px",
+      right: "0",
+      background: "white",
+      padding: "10px",
+    }}
+  >
+    <ThemeToggle />
+
+    <button onClick={handleLogout}>
+      Logout
+    </button>
+  </div>
+)}
+</div>
       </div>
     </div>
   );

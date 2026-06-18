@@ -16,13 +16,13 @@ import Orders from "./pages/Orders";
 import ProductDetails from "./pages/ProductDetails";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
-import ThemeToggle from "./components/ThemeToggle";
+
 
 
 function App() {
   return (
     <BrowserRouter>
-    <ThemeToggle />
+    
       <Routes>
 
         <Route
