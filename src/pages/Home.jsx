@@ -17,6 +17,10 @@ function Home() {
       (state) => state.products
     );
 
+ const { user } = useSelector(
+  (state) => state.auth
+);
+
   const [currentPage, setCurrentPage] =
     useState(1);
 
@@ -144,6 +148,20 @@ function Home() {
           setCurrentPage
         }
       />
+
+      <div
+  style={{
+    textAlign: "left",
+    marginTop: "15px",
+    marginBottom: "15px",
+    fontSize: "20px",
+    fontWeight: "bold",
+  }}
+>
+ 👋 Welcome to CaseHub, {user?.name}
+</div>
+
+     
 
       <h2>Products</h2>
 
