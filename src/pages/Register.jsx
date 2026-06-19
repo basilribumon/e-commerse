@@ -27,38 +27,39 @@ function Register() {
         e.target.value,
     });
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
+
+  if (!formData.name.trim()) {
+    alert("❌ Name cannot be empty");
+    return;
+  }
+
+  if (!formData.password.trim()) {
+    alert("❌ Password cannot be empty");
+    return;
+  }
 
   if (
     formData.password !==
     formData.confirmPassword
   ) {
-    alert(
-      "❌ Passwords do not match"
-    );
+    alert("❌ Passwords do not match");
     return;
   }
 
-  const result =
-    await dispatch(
-      registerUser({
-        name: formData.name,
-        email: formData.email,
-        password:
-          formData.password,
-      })
-    );
+  const result = await dispatch(
+    registerUser({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      password: formData.password,
+    })
+  );
 
   if (
-    registerUser.fulfilled.match(
-      result
-    )
+    registerUser.fulfilled.match(result)
   ) {
-    alert(
-      "✅ Registration Successful"
-    );
-
+    alert("✅ Registration Successful");
     navigate("/login");
   }
 };
