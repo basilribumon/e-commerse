@@ -12,14 +12,17 @@ function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { products, loading, error } =
-    useSelector(
-      (state) => state.products
-    );
+  const {
+    products,
+    loading,
+    error,
+  } = useSelector(
+    (state) => state.products
+  );
 
- const { user } = useSelector(
-  (state) => state.auth
-);
+  const { user } = useSelector(
+    (state) => state.auth
+  );
 
   const [currentPage, setCurrentPage] =
     useState(1);
@@ -127,7 +130,9 @@ function Home() {
     <div
       style={{
         padding: "20px",
-        textAlign: "center",
+        backgroundColor:
+          "#f4f6f8",
+        minHeight: "100vh",
       }}
     >
       <Navbar
@@ -149,27 +154,55 @@ function Home() {
         }
       />
 
+      {/* Welcome Banner */}
+
       <div
-  style={{
-    textAlign: "left",
-    marginTop: "15px",
-    marginBottom: "15px",
-    fontSize: "20px",
-    fontWeight: "bold",
-  }}
->
- 👋 Welcome to CaseHub, {user?.name}
-</div>
+        style={{
+          background:
+  "linear-gradient(135deg,#ffffff,#d6ecff)",
+          color: "black",
+          padding: "25px",
+          borderRadius: "15px",
+          margin: "20px 0",
+        }}
+      >
+        <h1
+          style={{
+            margin: 0,
+          }}
+        >
+          👋 Welcome Back,
+          {user?.name}
+        </h1>
 
-     
+        <p
+          style={{
+            marginTop: "10px",
+            opacity: 0.9,
+          }}
+        >
+          Discover the latest
+          mobile cases and
+          accessories.
+        </p>
+      </div>
 
-      <h2>Products</h2>
+      {/* Products */}
+
+      <h2
+        style={{
+          marginBottom: "20px",
+          color: "#131921",
+        }}
+      >
+        🛍️ Featured Products
+      </h2>
 
       <div
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fill, minmax(250px, 1fr))",
+            "repeat(auto-fill,minmax(220px,1fr))",
           gap: "20px",
         }}
       >
@@ -192,31 +225,55 @@ function Home() {
         )}
       </div>
 
+      {/* Pagination */}
+
       {filteredProducts.length >
         0 && (
         <div
           style={{
-            marginTop: "20px",
-            textAlign: "center",
+            marginTop: "30px",
+            display: "flex",
+            justifyContent:
+              "center",
+            alignItems:
+              "center",
+            gap: "15px",
           }}
         >
           <button
             disabled={
-              currentPage === 1
+              currentPage ===
+              1
             }
             onClick={() =>
               setCurrentPage(
-                currentPage - 1
+                currentPage -
+                  1
               )
             }
+            style={{
+              padding:
+                "10px 15px",
+              borderRadius:
+                "8px",
+              border:
+                "none",
+              cursor:
+                "pointer",
+            }}
           >
-            Previous
+            ⬅ Previous
           </button>
 
-          <span>
-            {" "}
-            Page {currentPage} of{" "}
-            {totalPages}{" "}
+          <span
+            style={{
+              fontWeight:
+                "bold",
+            }}
+          >
+            Page{" "}
+            {currentPage} of{" "}
+            {totalPages}
           </span>
 
           <button
@@ -226,11 +283,22 @@ function Home() {
             }
             onClick={() =>
               setCurrentPage(
-                currentPage + 1
+                currentPage +
+                  1
               )
             }
+            style={{
+              padding:
+                "10px 15px",
+              borderRadius:
+                "8px",
+              border:
+                "none",
+              cursor:
+                "pointer",
+            }}
           >
-            Next
+            Next ➡
           </button>
         </div>
       )}

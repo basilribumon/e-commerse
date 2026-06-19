@@ -47,103 +47,210 @@ console.log("Found Product:", product);
   }
 
   return (
+  <>
+    <Navbarr />
 
-    <>
-    <Navbarr/>
     <div
       style={{
-        padding: "30px",
-        maxWidth: "1000px",
-        margin: "0 auto",
-        display: "flex",
-        gap: "50px",
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg,#f0f8ff,#e6f4ff)",
+        padding: "40px 20px",
       }}
     >
-      
-      <div>
-        <img
-          src={product.image}
-          alt={product.title}
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          background:
+            "linear-gradient(135deg,#ffffff,#d6ecff)",
+          borderRadius: "25px",
+          padding: "30px",
+          boxShadow:
+            "0 5px 20px rgba(0,0,0,0.1)",
+          display: "flex",
+          gap: "40px",
+          flexWrap: "wrap",
+        }}
+      >
+        {/* Product Image */}
+
+        <div
           style={{
-            width: "350px",
-            height: "350px",
-            objectFit: "contain",
+            flex: "1",
+            minWidth: "300px",
+            display: "flex",
+            justifyContent:
+              "center",
+            alignItems: "center",
           }}
-        />
-      </div>
-
-      <div>
-        <h1>{product.title}</h1>
-
-        <h2>₹{product.price}</h2>
-
-        <p>
-          <strong>Category:</strong>{" "}
-          {product.category}
-        </p>
-
-        <p>
-          <strong>Stock:</strong>{" "}
-          {product.stock > 0
-            ? `${product.stock} Available`
-            : "Out of Stock"}
-        </p>
-
-        <p>
-          <strong>Description:</strong>
-        </p>
-
-        <p>
-          {product.description ||
-            "No description available"}
-        </p>
-
-        <button
-  style={{
-    padding: "10px 20px",
-    marginRight: "10px",
-  }}
-  onClick={() => {
-    dispatch(addToCart(product));
-
-    alert(
-      "✅ Product added to cart"
-    );
-  }}
->
-  Add to Cart
-</button>
-
-        <button
-  style={{
-    padding: "10px 20px",
-    marginRight: "10px",
-  }}
-  onClick={() => {
-    dispatch(
-      addToWishlist(product)
-    );
-
-    alert(
-      "❤️ Product added to wishlist"
-    );
-  }}
->
-  Add to Wishlist
-</button>
-
-        <button
-          style={{
-            padding: "10px 20px",
-          }}
-          onClick={() => navigate(-1)}
         >
-          Back
-        </button>
+          <img
+            src={product.image}
+            alt={product.title}
+            style={{
+              width: "100%",
+              maxWidth: "350px",
+              height: "350px",
+              objectFit: "contain",
+              background: "white",
+              borderRadius: "20px",
+              padding: "20px",
+            }}
+          />
+        </div>
+
+        {/* Product Info */}
+
+        <div
+          style={{
+            flex: "1",
+            minWidth: "300px",
+          }}
+        >
+          <span
+            style={{
+              background: "white",
+              padding: "8px 15px",
+              borderRadius: "20px",
+              fontSize: "13px",
+              fontWeight: "bold",
+            }}
+          >
+            {product.category}
+          </span>
+
+          <h1
+            style={{
+              marginTop: "20px",
+              color: "#131921",
+            }}
+          >
+            {product.title}
+          </h1>
+
+          <h2
+            style={{
+              color: "#0077ff",
+              fontSize: "32px",
+            }}
+          >
+            ₹{product.price}
+          </h2>
+
+          <p>
+            <strong>
+              Stock:
+            </strong>{" "}
+            {product.stock > 0
+              ? `✅ ${product.stock} Available`
+              : "❌ Out of Stock"}
+          </p>
+
+          <div
+            style={{
+              marginTop: "20px",
+              background: "white",
+              padding: "15px",
+              borderRadius: "12px",
+            }}
+          >
+            <h3>
+              📄 Description
+            </h3>
+
+            <p>
+              {product.description ||
+                "No description available"}
+            </p>
+          </div>
+
+          {/* Buttons */}
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              marginTop: "25px",
+            }}
+          >
+            <button
+              style={{
+                background:
+                  "linear-gradient(135deg,#4facfe,#00f2fe)",
+                color: "white",
+                border: "none",
+                padding: "14px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                dispatch(
+                  addToCart(product)
+                );
+
+                alert(
+                  "✅ Product added to cart"
+                );
+              }}
+            >
+              🛒 Add To Cart
+            </button>
+
+            <button
+              style={{
+                background:
+                  "#ff4d6d",
+                color: "white",
+                border: "none",
+                padding: "14px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                dispatch(
+                  addToWishlist(
+                    product
+                  )
+                );
+
+                alert(
+                  "❤️ Product added to wishlist"
+                );
+              }}
+            >
+              ❤️ Add To Wishlist
+            </button>
+
+            <button
+              style={{
+                background:
+                  "#131921",
+                color: "white",
+                border: "none",
+                padding: "14px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+              onClick={() =>
+                navigate(-1)
+              }
+            >
+              ⬅ Back
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    </>
-  );
+  </>
+);
 }
 
 export default ProductDetails;
