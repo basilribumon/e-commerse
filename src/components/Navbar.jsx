@@ -228,31 +228,21 @@ function Navbar({
             >
               <ThemeToggle />
 
-              <button
-                onClick={
-                  handleLogout
-                }
-                style={{
-                  width:
-                    "100%",
-                  marginTop:
-                    "10px",
-                  padding:
-                    "8px",
-                  border:
-                    "none",
-                  borderRadius:
-                    "6px",
-                  background:
-                    "#ff4d4f",
-                  color:
-                    "white",
-                  cursor:
-                    "pointer",
-                }}
-              >
-                Logout
-              </button>
+            <button
+  onClick={handleLogout}
+  style={{
+    width: "100%",
+    marginTop: "10px",
+    padding: "8px",
+    border: "none",
+    borderRadius: "6px",
+    background: "#ff4d4f",
+    color: "white",
+    cursor: "pointer",
+  }}
+>
+  Logout
+</button>
             </div>
           )}
         </div>

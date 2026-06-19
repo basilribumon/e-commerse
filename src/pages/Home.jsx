@@ -5,8 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../redux/slices/ProductSlice";
 import { logout } from "../redux/slices/authSlice";
 
+
+
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
+
+
+
+
 
 function Home() {
   const dispatch = useDispatch();
@@ -44,13 +50,13 @@ function Home() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const handleLogout = () => {
-    dispatch(logout());
+const handleLogout = () => {
+  dispatch(logout());
 
-    navigate("/login", {
-      replace: true,
-    });
-  };
+  navigate("/login", {
+    replace: true,
+  });
+};
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -136,23 +142,15 @@ function Home() {
       }}
     >
       <Navbar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        selectedCategory={
-          selectedCategory
-        }
-        setSelectedCategory={
-          setSelectedCategory
-        }
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-        handleLogout={
-          handleLogout
-        }
-        setCurrentPage={
-          setCurrentPage
-        }
-      />
+  searchTerm={searchTerm}
+  setSearchTerm={setSearchTerm}
+  selectedCategory={selectedCategory}
+  setSelectedCategory={setSelectedCategory}
+  sortOrder={sortOrder}
+  setSortOrder={setSortOrder}
+  handleLogout={handleLogout}
+  setCurrentPage={setCurrentPage}
+/>
 
       {/* Welcome Banner */}
 

@@ -4,46 +4,47 @@ import {
   Route,
 } from "react-router-dom";
 
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
-
-
 import ProductDetails from "./pages/ProductDetails";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
-
-
 function App() {
   return (
     <BrowserRouter>
-    
       <Routes>
 
+        {/* Main Home Page */}
         <Route
           path="/"
           element={<Home />}
         />
 
+        {/* Login Page */}
         <Route
           path="/login"
           element={<Login />}
         />
 
+        {/* Register Page */}
         <Route
           path="/register"
           element={<Register />}
         />
 
-       <Route 
-        path="/productdetails/:id"
-        element={<ProductDetails />}
+        {/* Home Route */}
+        <Route
+          path="/home"
+          element={<Home />}
         />
+
+        {/* Protected Routes */}
 
         <Route
           path="/cart"
@@ -82,16 +83,24 @@ function App() {
         />
 
         <Route
-         path="/product/:id"
-         element={
-    <ProtectedRoute>
-      <ProductDetails />
-    </ProtectedRoute>
-  }
-/>
+          path="/productdetails/:id"
+          element={
+            <ProtectedRoute>
+              <ProductDetails />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/product/:id"
+          element={
+            <ProtectedRoute>
+              <ProductDetails />
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
-
     </BrowserRouter>
   );
 }

@@ -88,14 +88,12 @@ export const loginUser =
   initialState,
 
   reducers: {
-    logout: (state) => {
-      localStorage.removeItem(
-        "user"
-      );
+   logout: (state) => {
+  localStorage.removeItem("user");
 
-      state.user = null;
-      state.isAuthenticated = false;
-    },
+  state.user = null;
+  state.isAuthenticated = false;
+},
   },
 
   extraReducers: (
