@@ -174,6 +174,14 @@ function Navbar({
         >
           🛒 Cart
         </button>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            navigate("/orders")
+          }
+        >
+          🚚 Orders
+        </button>
 
         <button
           style={buttonStyle}

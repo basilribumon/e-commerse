@@ -1,153 +1,143 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 function Orders() {
   const { orders } = useSelector(
     (state) => state.orders
   );
 
-  const navigate = useNavigate();
-
   return (
     <div
       style={{
-        padding: "20px",
+        background:
+          "#f4f6f8",
+        minHeight: "100vh",
+        padding: "30px",
       }}
     >
-      <h1>My Orders</h1>
+      <h1
+        style={{
+          textAlign: "center",
+          marginBottom: "30px",
+          color: "#131921",
+        }}
+      >
+        📦 My Orders
+      </h1>
 
-      {orders.length === 0 ? (
-        <h3>No Orders Found</h3>
-      ) : (
-        orders.map((order) => (
-          <div
-            key={order.id}
-            style={{
-              border: "1px solid #ddd",
-              padding: "15px",
-              marginBottom: "20px",
-              borderRadius: "10px",
-            }}
-          >
-            <h3>
-              ✅ Order Placed Successfully
-            </h3>
-
-            <p>
-              <strong>
-                Order ID:
-              </strong>{" "}
-              {order.id}
-            </p>
-
-            <p>
-              <strong>
-                Date:
-              </strong>{" "}
-              {order.date}
-            </p>
-
-            <p>
-              <strong>
-                Customer:
-              </strong>{" "}
-              {order.customerName}
-            </p>
-
-            <p>
-              <strong>
-                Address:
-              </strong>{" "}
-              {order.address.address},{" "}
-              {order.address.city},{" "}
-              {order.address.pincode}
-            </p>
-
-            <p>
-              <strong>
-                Payment Method:
-              </strong>{" "}
-              {order.paymentMethod}
-            </p>
-
-            <p>
-              <strong>
-                Total Amount:
-              </strong>{" "}
-              ₹{order.total}
-            </p>
-
-            <p>
-              <strong>
-                Status:
-              </strong>{" "}
-              {order.status}
-            </p>
-
-            <h4>
-              Ordered Products
-            </h4>
-
-            {order.items.map(
-              (item) => (
-                <div
-                  key={item.id}
-                  style={{
-                    display: "flex",
-                    gap: "15px",
-                    marginBottom:
-                      "10px",
-                    alignItems:
-                      "center",
-                  }}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    width="70"
-                    height="70"
-                  />
-
-                  <div>
-                    <h4>
-                      {item.title}
-                    </h4>
-
-                    <p>
-                      ₹{item.price}
-                    </p>
-                  </div>
-                 
-                </div>
-                
-              )
-              
-            )}
-            <div
-  style={{
-    marginTop: "20px",
-    textAlign: "center",
-  }}
->
-  <h3>
-    🎉 Thank you for shopping with
-    CaseHub!
-  </h3>
-
-  <button
-    onClick={() => navigate("/")}
+      {orders.map((order) => (
+  <div
+    key={order.id}
     style={{
-      padding: "10px 20px",
-      cursor: "pointer",
-      marginTop: "10px",
+      background: "white",
+      borderRadius: "15px",
+      padding: "20px",
+      marginBottom: "20px",
+      boxShadow:
+        "0 2px 10px rgba(0,0,0,0.1)",
     }}
   >
-    Continue Shopping
-  </button>
-</div>
-          </div>
-        ))
-      )}
+    <h3>
+      📦 Order Placed
+    </h3>
+
+    <p>
+      📅 {order.date}
+    </p>
+
+    <p>
+      🚚 {order.status}
+    </p>
+
+    <p>
+      💳 {order.paymentMethod}
+    </p>
+
+    <hr />
+
+    <h4>
+      📍 Delivery Address
+    </h4>
+
+    <p>
+      {order.address?.address}
+    </p>
+
+    <p>
+      {order.address?.city}
+    </p>
+
+    <p>
+      📞 {order.address?.phone}
+    </p>
+
+    <hr />
+
+    <h4>
+      🛍 Purchased Items
+    </h4>
+
+    {order.items.map((item) => (
+      <div
+        key={item.id}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "15px",
+          marginTop: "15px",
+          paddingBottom: "10px",
+          borderBottom:
+            "1px solid #eee",
+        }}
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          width="80"
+          height="80"
+          style={{
+            borderRadius: "10px",
+            objectFit: "contain",
+          }}
+        />
+
+        <div>
+          <h4
+            style={{
+              margin: "0 0 5px 0",
+            }}
+          >
+            {item.title}
+          </h4>
+
+          <p
+            style={{
+              color: "#007bff",
+              fontWeight: "bold",
+              margin: 0,
+            }}
+          >
+            ₹{item.price}
+          </p>
+        </div>
+      </div>
+    ))}
+
+    <div
+      style={{
+        textAlign: "right",
+        marginTop: "15px",
+      }}
+    >
+      <h2
+        style={{
+          color: "green",
+        }}
+      >
+        Total: ₹{order.total}
+      </h2>
+    </div>
+  </div>
+))}
     </div>
   );
 }
