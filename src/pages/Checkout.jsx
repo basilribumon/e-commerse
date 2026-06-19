@@ -20,8 +20,61 @@ function Checkout() {
   pincode: "",
 });
 
+const [errors, setErrors] = useState({
+  phone: "",
+  address: "",
+  city: "",
+  pincode: "",
+});
+
 const [paymentMethod, setPaymentMethod] =
   useState("Cash on Delivery");
+
+  const validateField = (name, value) => {
+  let error = "";
+
+  switch (name) {
+    case "phone":
+      if (!value.trim()) {
+        error = "Phone number is required";
+      } else if (!/^\d{10}$/.test(value)) {
+        error = "Phone number must be 10 digits";
+      }
+      break;
+
+    case "address":
+      if (!value.trim()) {
+        error = "Address is required";
+      }
+      break;
+
+    case "city":
+      if (!value.trim()) {
+        error = "City is required";
+      } else if (!/^[A-Za-z ]+$/.test(value)) {
+        error = "City should contain only letters";
+      }
+      break;
+
+    case "pincode":
+      if (!value.trim()) {
+        error = "Pincode is required";
+      } else if (!/^\d{6}$/.test(value)) {
+        error = "Pincode must be 6 digits";
+      }
+      break;
+
+    default:
+      break;
+  }
+
+  setErrors((prev) => ({
+    ...prev,
+    [name]: error,
+  }));
+
+  return error;
+};
 
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price,
@@ -31,25 +84,52 @@ const [paymentMethod, setPaymentMethod] =
   (state) => state.auth
 );
 
-  const handlePlaceOrder = () => {
-    const newOrder = {
-  id: Date.now(),
-  items: cartItems,
-  total: totalPrice,
-  date: new Date().toLocaleString(),
-  address,
-  paymentMethod,
-  status: "Order Confirmed",
-};
+const handlePlaceOrder = () => {
+  const phoneError = validateField(
+    "phone",
+    address.phone
+  );
 
-    dispatch(addOrder(newOrder));
+  const addressError = validateField(
+    "address",
+    address.address
+  );
 
-    dispatch(clearCart());
+  const cityError = validateField(
+    "city",
+    address.city
+  );
 
-    alert("✅ Order Placed Successfully!");
+  const pincodeError = validateField(
+    "pincode",
+    address.pincode
+  );
 
-    navigate("/orders");
+  if (
+    phoneError ||
+    addressError ||
+    cityError ||
+    pincodeError
+  ) {
+    return;
+  }
+
+  const newOrder = {
+    id: Date.now(),
+    items: cartItems,
+    total: totalPrice,
+    date: new Date().toLocaleString(),
+    address,
+    paymentMethod,
+    status: "Order Confirmed",
   };
+
+  dispatch(addOrder(newOrder));
+  dispatch(clearCart());
+
+  alert("✅ Order Placed Successfully!");
+  navigate("/orders");
+};
 
   if (cartItems.length === 0) {
     return (
@@ -209,72 +289,138 @@ return (
         </div>
 
         <input
-          type="text"
-          placeholder="📞 Phone Number"
-          value={
-            address.phone
-          }
-          onChange={(e) =>
-            setAddress({
-              ...address,
-              phone:
-                e.target
-                  .value,
-            })
-          }
-          style={inputStyle}
-        />
+  type="text"
+  maxLength={10}
+  placeholder="📞 Phone Number"
+  value={address.phone}
+  onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, "");
+
+    setAddress({
+      ...address,
+      phone: value,
+    });
+
+    validateField("phone", value);
+  }}
+  style={inputStyle}
+/>
+
+{errors.phone && (
+  <p style={{ color: "red" }}>
+    {errors.phone}
+  </p>
+)}
+
+
+
+
+
 
         <input
-          type="text"
-          placeholder="🏠 Address"
-          value={
-            address.address
-          }
-          onChange={(e) =>
-            setAddress({
-              ...address,
-              address:
-                e.target
-                  .value,
-            })
-          }
-          style={inputStyle}
-        />
+  type="text"
+  placeholder="🏠 Address"
+  value={address.address}
+  onChange={(e) => {
+    const value = e.target.value;
+
+    setAddress({
+      ...address,
+      address: value,
+    });
+
+    validateField(
+      "address",
+      value
+    );
+  }}
+  style={inputStyle}
+/>
+
+{errors.address && (
+  <p
+    style={{
+      color: "red",
+      fontSize: "13px",
+      marginTop: "-8px",
+      marginBottom: "10px",
+    }}
+  >
+    {errors.address}
+  </p>
+)}
 
         <input
-          type="text"
-          placeholder="🏙️ City"
-          value={
-            address.city
-          }
-          onChange={(e) =>
-            setAddress({
-              ...address,
-              city:
-                e.target
-                  .value,
-            })
-          }
-          style={inputStyle}
-        />
+  type="text"
+  placeholder="🏙️ City"
+  value={address.city}
+  onChange={(e) => {
+    const value =
+      e.target.value;
+
+    setAddress({
+      ...address,
+      city: value,
+    });
+
+    validateField(
+      "city",
+      value
+    );
+  }}
+  style={inputStyle}
+/>
+
+{errors.city && (
+  <p
+    style={{
+      color: "red",
+      fontSize: "13px",
+      marginTop: "-8px",
+      marginBottom: "10px",
+    }}
+  >
+    {errors.city}
+  </p>
+)}
 
         <input
-          type="text"
-          placeholder="📮 Pincode"
-          value={
-            address.pincode
-          }
-          onChange={(e) =>
-            setAddress({
-              ...address,
-              pincode:
-                e.target
-                  .value,
-            })
-          }
-          style={inputStyle}
-        />
+  type="text"
+  maxLength={6}
+  placeholder="📮 Pincode"
+  value={address.pincode}
+  onChange={(e) => {
+    const value =
+      e.target.value.replace(
+        /\D/g,
+        ""
+      );
+
+    setAddress({
+      ...address,
+      pincode: value,
+    });
+
+    validateField(
+      "pincode",
+      value
+    );
+  }}
+  style={inputStyle}
+/>
+
+{errors.pincode && (
+  <p
+    style={{
+      color: "red",
+      fontSize: "13px",
+      marginTop: "-8px",
+      marginBottom: "10px",
+    }}
+  >
+    {errors.pincode}
+  </p>
+)}
 
         <h2>
           💳 Payment Method
