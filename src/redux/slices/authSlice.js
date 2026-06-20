@@ -144,6 +144,8 @@ export const loginUser =
           state,
           action
         ) => {
+
+          console.log("Login Success",action.payload)
           state.loading = false;
 
           state.user =

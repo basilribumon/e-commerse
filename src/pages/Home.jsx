@@ -12,12 +12,10 @@ import Navbar from "../components/Navbar";
 
 
 
-
-
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const {
     products,
     loading,
