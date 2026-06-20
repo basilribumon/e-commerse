@@ -5,6 +5,7 @@ import { fetchProducts } from "../redux/slices/ProductSlice";
 import Navbarr from "../components/Navbartwo";
 import { addToCart } from "../redux/slices/CartSlice";
 import { addToWishlist } from "../redux/slices/wishlistSlice";
+import Navbar from "../components/Navbar";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -48,7 +49,7 @@ console.log("Found Product:", product);
 
   return (
   <>
-    <Navbarr />
+    
 
     <div
       style={{
@@ -58,6 +59,7 @@ console.log("Found Product:", product);
         padding: "40px 20px",
       }}
     >
+      <Navbar /><br /><br />
       <div
         style={{
           maxWidth: "1200px",

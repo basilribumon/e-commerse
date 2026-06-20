@@ -8,7 +8,7 @@
 
 :root[data-theme="dark"] {
   --background: #111827;
-  --text: white;
+  --text: black;
   --card-bg: #1f2937;
   --border: #374151;
 }

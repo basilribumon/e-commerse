@@ -1,6 +1,10 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Orders() {
+
+  const navigate = useNavigate()
   const { orders } = useSelector(
     (state) => state.orders
   );
@@ -14,6 +18,8 @@ function Orders() {
         padding: "30px",
       }}
     >
+      <Navbar/>
+
       <h1
         style={{
           textAlign: "center",
@@ -136,8 +142,39 @@ function Orders() {
         Total: ₹{order.total}
       </h2>
     </div>
-  </div>
+
+
+
+<button
+  onClick={() => navigate("/home")}
+  style={{
+    background: "linear-gradient(135deg, #4f46e5, #7c3aed)",
+    color: "#fff",
+    border: "none",
+    padding: "12px 24px",
+    borderRadius: "10px",
+    fontSize: "16px",
+    fontWeight: "600",
+    cursor: "pointer",
+    boxShadow: "0 4px 12px rgba(79,70,229,0.3)",
+    transition: "all 0.3s ease",
+    marginLeft:"50%"
+  }}
+  onMouseOver={(e) => {
+    e.target.style.transform = "translateY(-2px)";
+  }}
+  onMouseOut={(e) => {
+    e.target.style.transform = "translateY(0)";
+  }}
+>
+  🏠 Back to Home Page
+</button>  
+
+
+
+</div>
 ))}
+
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { addOrder } from "../redux/slices/orderSlice";
 import { clearCart } from "../redux/slices/CartSlice";
+import Navbar from "../components/Navbar";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -167,6 +168,7 @@ return (
       padding: "30px",
     }}
   >
+    <Navbar />
     <h1
       style={{
         textAlign: "center",

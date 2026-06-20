@@ -5,6 +5,8 @@ import {
   removeFromCart,
 } from "../redux/slices/CartSlice";
 
+import Navbar from "../components/Navbar";
+
 function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,6 +40,8 @@ function Cart() {
         padding: "30px",
       }}
     >
+      <Navbar />
+      
       <h1
         style={{
           textAlign: "center",
