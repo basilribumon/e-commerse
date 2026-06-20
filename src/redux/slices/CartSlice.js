@@ -20,8 +20,6 @@ const initialState = {
   cartItems: getCartItems(),
 };
 
-
-
 const cartSlice = createSlice({
   name: "cart",
 
@@ -43,12 +41,14 @@ const cartSlice = createSlice({
           )
         );
 
-      localStorage.setItem(
-        `cart_${user.id}`,
-        JSON.stringify(
-          state.cartItems
-        )
-      );
+      if (user) {
+        localStorage.setItem(
+          `cart_${user.id}`,
+          JSON.stringify(
+            state.cartItems
+          )
+        );
+      }
     },
 
     removeFromCart: (
@@ -69,12 +69,14 @@ const cartSlice = createSlice({
           )
         );
 
-      localStorage.setItem(
-        `cart_${user.id}`,
-        JSON.stringify(
-          state.cartItems
-        )
-      );
+      if (user) {
+        localStorage.setItem(
+          `cart_${user.id}`,
+          JSON.stringify(
+            state.cartItems
+          )
+        );
+      }
     },
 
     clearCart: (
@@ -89,9 +91,29 @@ const cartSlice = createSlice({
           )
         );
 
-      localStorage.removeItem(
-        `cart_${user.id}`
-      );
+      if (user) {
+        localStorage.removeItem(
+          `cart_${user.id}`
+        );
+      }
+    },
+
+    loadCart: (
+      state
+    ) => {
+      const user =
+        JSON.parse(
+          localStorage.getItem(
+            "user"
+          )
+        );
+
+      state.cartItems =
+        JSON.parse(
+          localStorage.getItem(
+            `cart_${user.id}`
+          )
+        ) || [];
     },
   },
 });
@@ -100,6 +122,7 @@ export const {
   addToCart,
   removeFromCart,
   clearCart,
+  loadCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

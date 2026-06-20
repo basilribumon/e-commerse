@@ -16,6 +16,7 @@ function Wishlist() {
       (state) =>
         state.wishlist
     );
+    
 
   return (
     <div

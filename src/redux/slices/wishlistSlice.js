@@ -1,80 +1,140 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const wishlistItems =
-  JSON.parse(
-    localStorage.getItem("wishlist")
-  ) || [];
+const getWishlistItems = () => {
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
 
-const initialState = {
-  wishlistItems,
+  if (!user) return [];
+
+  return (
+    JSON.parse(
+      localStorage.getItem(
+        `wishlist_${user.id}`
+      )
+    ) || []
+  );
 };
 
-const wishlistSlice = createSlice({
-  name: "wishlist",
+const initialState = {
+  wishlistItems:
+    getWishlistItems(),
+};
 
-  initialState,
+const wishlistSlice =
+  createSlice({
+    name: "wishlist",
 
-  reducers: {
-    addToWishlist: (
-      state,
-      action
-    ) => {
-      const exists =
-        state.wishlistItems.find(
-          (item) =>
-            item.id ===
-            action.payload.id
-        );
+    initialState,
 
-      if (!exists) {
-        state.wishlistItems.push(
-          action.payload
-        );
+    reducers: {
+      addToWishlist: (
+        state,
+        action
+      ) => {
+        const exists =
+          state.wishlistItems.find(
+            (item) =>
+              item.id ===
+              action.payload.id
+          );
 
-        localStorage.setItem(
-          "wishlist",
-          JSON.stringify(
-            state.wishlistItems
-          )
-        );
-      }
-    },
-
-    removeFromWishlist: (
-      state,
-      action
-    ) => {
-      state.wishlistItems =
-        state.wishlistItems.filter(
-          (item) =>
-            item.id !==
+        if (!exists) {
+          state.wishlistItems.push(
             action.payload
-        );
+          );
 
-      localStorage.setItem(
-        "wishlist",
-        JSON.stringify(
-          state.wishlistItems
-        )
-      );
+          const user =
+            JSON.parse(
+              localStorage.getItem(
+                "user"
+              )
+            );
+
+          if (user) {
+            localStorage.setItem(
+              `wishlist_${user.id}`,
+              JSON.stringify(
+                state.wishlistItems
+              )
+            );
+          }
+        }
+      },
+
+      removeFromWishlist: (
+        state,
+        action
+      ) => {
+        state.wishlistItems =
+          state.wishlistItems.filter(
+            (item) =>
+              item.id !==
+              action.payload
+          );
+
+        const user =
+          JSON.parse(
+            localStorage.getItem(
+              "user"
+            )
+          );
+
+        if (user) {
+          localStorage.setItem(
+            `wishlist_${user.id}`,
+            JSON.stringify(
+              state.wishlistItems
+            )
+          );
+        }
+      },
+
+      clearWishlist: (
+        state
+      ) => {
+        state.wishlistItems =
+          [];
+
+        const user =
+          JSON.parse(
+            localStorage.getItem(
+              "user"
+            )
+          );
+
+        if (user) {
+          localStorage.removeItem(
+            `wishlist_${user.id}`
+          );
+        }
+      },
+
+      loadWishlist: (
+        state
+      ) => {
+        const user =
+          JSON.parse(
+            localStorage.getItem(
+              "user"
+            )
+          );
+
+        state.wishlistItems =
+          JSON.parse(
+            localStorage.getItem(
+              `wishlist_${user.id}`
+            )
+          ) || [];
+      },
     },
-
-    clearWishlist: (
-      state
-    ) => {
-      state.wishlistItems = [];
-
-      localStorage.removeItem(
-        "wishlist"
-      );
-    },
-  },
-});
+  });
 
 export const {
   addToWishlist,
   removeFromWishlist,
   clearWishlist,
+  loadWishlist,
 } = wishlistSlice.actions;
 
 export default wishlistSlice.reducer;

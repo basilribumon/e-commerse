@@ -2,11 +2,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/slices/authSlice";
+import { loadWishlist } from "../redux/slices/wishlistSlice";
+import { loadOrders } from "../redux/slices/orderSlice";
+import { loadCart } from "../redux/slices/CartSlice";
 
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
 
   const { loading, error } =
     useSelector(
@@ -40,16 +44,18 @@ function Login() {
           )
         );
 
-      if (
-        loginUser.fulfilled.match(
-          result
-        ) &&
-        result.payload
-      ) {
-        navigate("/");
+     if (
+  loginUser.fulfilled.match(
+    result
+  ) &&
+  result.payload
+) {
+  dispatch(loadCart());
+  dispatch(loadWishlist());
+  dispatch(loadOrders());
 
-        window.location.reload();
-      }
+  navigate("/");
+}
     };
 
   return (
