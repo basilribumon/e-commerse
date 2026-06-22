@@ -137,7 +137,7 @@ function ProductCard({ product }) {
             );
 
             alert(
-              "✅ Product added to cart"
+              "✅ Product added to Buy"
             );
 
             navigate(

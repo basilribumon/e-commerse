@@ -26,7 +26,7 @@ console.log("URL ID:", id);
     }
   }, [dispatch, products.length]);
 
-  // Wait until products are loaded
+ 
   if (loading || products.length === 0) {
     return <h2>Loading...</h2>;
   }
@@ -75,7 +75,7 @@ console.log("Found Product:", product);
           flexWrap: "wrap",
         }}
       >
-        {/* Product Image */}
+      
 
         <div
           style={{
@@ -167,7 +167,7 @@ console.log("Found Product:", product);
             </p>
           </div>
 
-          {/* Buttons */}
+        
 
           <div
             style={{
@@ -177,6 +177,36 @@ console.log("Found Product:", product);
               marginTop: "25px",
             }}
           >
+            <button
+              style={{
+                background:
+                  "linear-gradient(135deg,#4facfe,#00f2fe)",
+                color: "white",
+                border: "none",
+                padding: "14px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+            dispatch(
+              addToCart(product)
+            );
+
+            alert(
+              "✅ Product added to Buy"
+            );
+
+            navigate(
+              "/checkout"
+            );
+          }}
+            >
+              🛒 Buy Now
+            </button>
+
+
             <button
               style={{
                 background:

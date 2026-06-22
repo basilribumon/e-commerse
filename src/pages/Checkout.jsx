@@ -175,7 +175,7 @@ return (
         marginBottom: "30px",
       }}
     >
-      🛒 Checkout
+      🛒 Buy Products
     </h1>
 
     <div
