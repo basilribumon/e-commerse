@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../redux/slices/ProductSlice";
 import { logout } from "../redux/slices/authSlice";
 
-
-
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
 
@@ -31,7 +29,7 @@ function Home() {
   const [currentPage, setCurrentPage] =
     useState(1);
 
-  const productsPerPage = 12;
+  const productsPerPage = 14;
 
   const [searchTerm, setSearchTerm] =
     useState("");

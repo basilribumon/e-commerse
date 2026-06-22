@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/slices/ProductSlice";
-import Navbarr from "../components/Navbartwo";
 import { addToCart } from "../redux/slices/CartSlice";
 import { addToWishlist } from "../redux/slices/wishlistSlice";
 import Navbar from "../components/Navbar";
