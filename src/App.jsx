@@ -38,13 +38,15 @@ function App() {
           element={<Register />}
         />
 
-        {/* Home Route */}
+        
         <Route
           path="/home"
-          element={<Home />}
+          element={<ProtectedRoute>
+            <Home />
+            </ProtectedRoute>}
         />
 
-        {/* Protected Routes */}
+        
 
         <Route
           path="/cart"
