@@ -9,7 +9,7 @@
       "category": "IOS",
       "image": "/images/iphone14.png",
       "stock": 10,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Premium shockproof case designed for iPhone 14, offering excellent protection against drops, scratches, and everyday wear while maintaining a sleek and stylish appearance."
     },
     {
       "id": "2",
@@ -27,7 +27,7 @@
       "category": "Vivo",
       "image": "/images/vivoX300pro.png",
       "stock": 5,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Heavy-duty protective case for Vivo X300 Pro featuring reinforced corners and strong impact resistance for maximum device safety."
     },
     {
       "id": "4",
@@ -36,7 +36,7 @@
       "category": "IOS",
       "image": "/images/iphone17.png",
       "stock": 2,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Elegant premium case for iPhone 17 with advanced shock absorption technology, ensuring both style and superior protection."
     },
     {
       "id": "5",
@@ -45,7 +45,7 @@
       "category": "IOS",
       "image": "/images/iphone13.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Slim and lightweight iPhone 13 case that delivers everyday protection while preserving the phone's modern and elegant design."
     },
     {
       "id": "6",
@@ -54,7 +54,7 @@
       "category": "Samsung",
       "image": "/images/samsunga24.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Protective case for Samsung Galaxy A24 designed to guard against impacts, scratches, and daily wear while ensuring a comfortable grip."
     },
     {
       "id": "7",
@@ -63,7 +63,7 @@
       "category": "Redme",
       "image": "/images/redmenote10pro.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Crystal-clear protective case for Redmi Note 10 Pro that showcases the phone's original design while protecting it from scratches and minor drops."
     },
     {
       "id": "8",
@@ -72,7 +72,7 @@
       "category": "Samsung",
       "image": "/images/samsunga35.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Stylish and durable case for Samsung Galaxy A35 5G featuring enhanced corner protection and a premium finish."
     },
     {
       "id": "9",
@@ -81,7 +81,7 @@
       "category": "Redme",
       "image": "/images/redmex5.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Protective bumper case for Redmi X5 with reinforced edges and an anti-slip texture for improved handling and protection."
     },
     {
       "id": "10",
@@ -90,7 +90,7 @@
       "category": "Redme",
       "image": "/images/redmenote15pro.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Elegant and lightweight case for Redmi Note 15 Pro that provides complete protection without adding unnecessary bulk."
     },
     {
       "id": "11",
@@ -99,7 +99,7 @@
       "category": "Redme",
       "image": "/images/samsunggalaxys25.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Premium-quality case for Samsung Galaxy S25 offering reliable protection, modern styling, and long-lasting durability."
     },
     {
       "id": "12",
@@ -108,7 +108,7 @@
       "category": "Samsung",
       "image": "/images/samsunggalaxys26.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Advanced protective case for Samsung Galaxy S26 built with durable materials to safeguard the device from everyday damage."
     },
     {
       "id": "13",
@@ -117,7 +117,7 @@
       "category": "Samsung",
       "image": "/images/samsunggalaxym17e.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Comfortable and lightweight case for Samsung Galaxy M17e designed to protect against scratches, drops, and daily wear."
     },
     {
       "id": "14",
@@ -126,7 +126,7 @@
       "category": "Redme",
       "image": "/images/redme9.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Reliable and affordable Redmi 9 case that provides essential protection while maintaining a simple and practical design"
     },
     {
       "id": "15",
@@ -135,7 +135,7 @@
       "category": "IOS",
       "image": "/images/iphone11.png",
       "stock": 8,
-      "description": "Apple iPhone 14 with A15 Bionic chip and advanced camera system."
+      "description": "Premium protective case designed specifically for iPhone 11, offering excellent protection against drops, scratches, and daily wear. Its slim profile, comfortable grip, and precise cutouts ensure both style and functionality while keeping your device safe."
     }
   ],
   "users": [

@@ -115,13 +115,11 @@ function Orders() {
             {item.title}
           </h4>
 
-          <p
-            style={{
+          <p style={{
               color: "#007bff",
               fontWeight: "bold",
               margin: 0,
-            }}
-          >
+            }} >
             ₹{item.price}
           </p>
         </div>
