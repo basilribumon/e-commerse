@@ -148,7 +148,7 @@ const handleLogout = () => {
   setCurrentPage={setCurrentPage}
 />
 
-      {/* Welcome Banner */}
+    {/* welcome */}
 
       <div
         style={{

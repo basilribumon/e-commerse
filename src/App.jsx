@@ -20,19 +20,19 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* Main Home Page */}
+       
         <Route
           path="/"
           element={<Home />}
         />
 
-        {/* Login Page */}
+        
         <Route
           path="/login"
           element={<Login />}
         />
 
-        {/* Register Page */}
+       
         <Route
           path="/register"
           element={<Register />}
