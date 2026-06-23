@@ -35,6 +35,8 @@ const handleSubmit = async (e) => {
     return;
   }
 
+ 
+
   if (!formData.password.trim()) {
     alert("❌ Password cannot be empty");
     return;
