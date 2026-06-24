@@ -16,6 +16,12 @@ import ProductDetails from "./pages/ProductDetails";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminLogin from "./admin/pagess/adminLogin";
 import AdminDashboard from "./admin/pagess/adminDashboard";
+import AdminProtectedRoute from "./admin/componentss/adminProtectedRoute"
+import AdminProducts from "./admin/pagess/adminProducts";
+import AdminUsers from "./admin/pagess/adminUsers";
+import AdminOrders from "./admin/pagess/adminOrders";
+
+
 
 function App() {
   return (
@@ -28,9 +34,40 @@ function App() {
         />
         
         <Route
-        path="admin/dashboard"
-        element={<AdminDashboard/>}
-        />
+        path="/admin/dashboard"
+        element={
+      <AdminProtectedRoute>
+        <AdminDashboard />
+      </AdminProtectedRoute>
+        }
+      />
+
+      <Route
+      path="/admin/products"
+      element={
+       <AdminProtectedRoute  dminProtectedRoute>
+        <AdminProducts />
+      </AdminProtectedRoute>
+     }
+    />
+
+    <Route
+      path="/admin/users"
+      element={
+        <AdminProtectedRoute>
+          <AdminUsers />
+        </AdminProtectedRoute>
+      }
+      />
+
+    <Route
+      path="/admin/orders"
+      element={
+        <AdminProtectedRoute>
+          <AdminOrders />
+        </AdminProtectedRoute>
+      }
+    />
          
 
 
