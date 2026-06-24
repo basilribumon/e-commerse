@@ -14,13 +14,28 @@ import Orders from "./pages/Orders";
 import ProductDetails from "./pages/ProductDetails";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminLogin from "./admin/pagess/adminLogin";
+import AdminDashboard from "./admin/pagess/adminDashboard";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* ADMIN */}
+        <Route
+         path="/admin-login"
+        element={<AdminLogin />}
+        />
+        
+        <Route
+        path="admin/dashboard"
+        element={<AdminDashboard/>}
+        />
+         
 
-       
+
+
+       {/* USER */}
         <Route
           path="/"
           element={<Home />}

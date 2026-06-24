@@ -35,7 +35,6 @@ const handleSubmit = async (e) => {
     return;
   }
 
- 
 
   if (!formData.password.trim()) {
     alert("❌ Password cannot be empty");
@@ -237,22 +236,14 @@ const handleSubmit = async (e) => {
           <button
             type="submit"
             style={{
-              background:
-                "linear-gradient(135deg,#4facfe,#00f2fe)",
-              color:
-                "white",
-              border:
-                "none",
-              padding:
-                "14px",
-              borderRadius:
-                "10px",
-              fontSize:
-                "16px",
-              fontWeight:
-                "bold",
-              cursor:
-                "pointer",
+              background:"linear-gradient(135deg,#4facfe,#00f2fe)",
+              color:"white",
+              border:"none",
+              padding:"14px",
+              borderRadius:"10px",
+              fontSize:"16px",
+              fontWeight:"bold",
+              cursor:"pointer",
             }}
           >
             {loading
@@ -263,10 +254,8 @@ const handleSubmit = async (e) => {
           {error && (
             <p
               style={{
-                color:
-                  "red",
-                textAlign:
-                  "center",
+                color:"red",
+                textAlign:"center",
               }}
             >
               {error}
@@ -276,10 +265,8 @@ const handleSubmit = async (e) => {
 
         <div
           style={{
-            textAlign:
-              "center",
-            marginTop:
-              "20px",
+            textAlign:"center",
+            marginTop:"20px",
           }}
         >
           <p>
@@ -294,18 +281,12 @@ const handleSubmit = async (e) => {
               )
             }
             style={{
-              background:
-                "#131921",
-              color:
-                "white",
-              border:
-                "none",
-              padding:
-                "12px 20px",
-              borderRadius:
-                "10px",
-              cursor:
-                "pointer",
+              background:"#131921",
+              color:"white",
+              border:"none",
+              padding:"12px 20px",
+              borderRadius:"10px",
+              cursor:"pointer",
             }}
           >
             Login Now

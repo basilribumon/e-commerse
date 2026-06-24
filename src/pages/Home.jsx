@@ -152,8 +152,7 @@ const handleLogout = () => {
 
       <div
         style={{
-          background:
-  "linear-gradient(135deg,#ffffff,#d6ecff)",
+          background:"linear-gradient(135deg,#ffffff,#d6ecff)",
           color: "black",
           padding: "25px",
           borderRadius: "15px",
@@ -195,8 +194,7 @@ const handleLogout = () => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fill,minmax(220px,1fr))",
+          gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",
           gap: "20px",
         }}
       >
@@ -246,14 +244,10 @@ const handleLogout = () => {
               )
             }
             style={{
-              padding:
-                "10px 15px",
-              borderRadius:
-                "8px",
-              border:
-                "none",
-              cursor:
-                "pointer",
+              padding:"10px 15px",
+              borderRadius:"8px",
+              border:"none",
+              cursor:"pointer",
             }}
           >
             ⬅ Previous
@@ -282,14 +276,10 @@ const handleLogout = () => {
               )
             }
             style={{
-              padding:
-                "10px 15px",
-              borderRadius:
-                "8px",
-              border:
-                "none",
-              cursor:
-                "pointer",
+              padding:"10px 15px",
+              borderRadius:"8px",
+              border:"none",
+              cursor:"pointer",
             }}
           >
             Next ➡

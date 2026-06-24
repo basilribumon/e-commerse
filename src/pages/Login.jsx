@@ -5,6 +5,7 @@ import { loginUser } from "../redux/slices/authSlice";
 import { loadWishlist } from "../redux/slices/wishlistSlice";
 import { loadOrders } from "../redux/slices/orderSlice";
 import { loadCart } from "../redux/slices/CartSlice";
+import AdminLogin from "../admin/pagess/adminLogin";
 
 
 function Login() {
@@ -59,6 +60,7 @@ function Login() {
     };
 
   return (
+    
     <div
       style={{
         minHeight: "100vh",
@@ -71,6 +73,7 @@ function Login() {
         padding: "20px",
       }}
     >
+      
       <div
         style={{
           width: "100%",
@@ -84,6 +87,23 @@ function Login() {
             "0 5px 20px rgba(0,0,0,0.1)",
         }}
       >
+         <button
+            onClick={() =>
+              navigate(
+                "/admin-login"
+              )
+            }
+            style={{
+              background:"#131921",
+              color:"white",
+              border:"none",
+              padding:"5px 10px",
+              borderRadius:"10px",
+              cursor:"pointer",
+            }}
+          >
+            Admin
+          </button>
         <div
           style={{
             textAlign:
@@ -252,6 +272,9 @@ function Login() {
           >
             Create Account
           </button>
+
+         
+          
         </div>
       </div>
     </div>
