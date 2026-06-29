@@ -1,81 +1,146 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
 
-const getOrders = () => {
-  const user = JSON.parse(
-    localStorage.getItem("user")
+import orderService from "../../services/orderService";
+
+// Place Order
+export const placeOrder =
+  createAsyncThunk(
+    "orders/placeOrder",
+
+    async (
+      orderData,
+      thunkAPI
+    ) => {
+      try {
+        return await orderService.placeOrder(
+          orderData
+        );
+      } catch (error) {
+        return thunkAPI.rejectWithValue(
+          error.message
+        );
+      }
+    }
   );
 
-  if (!user) return [];
+// Fetch Logged-in User Orders
+export const fetchOrders =
+  createAsyncThunk(
+    "orders/fetchOrders",
 
-  return (
-    JSON.parse(
-      localStorage.getItem(
-        `orders_${user.id}`
-      )
-    ) || []
+    async (
+      userId,
+      thunkAPI
+    ) => {
+      try {
+        return await orderService.getOrders(
+          userId
+        );
+      } catch (error) {
+        return thunkAPI.rejectWithValue(
+          error.message
+        );
+      }
+    }
   );
-};
 
 const initialState = {
-  orders: getOrders(),
+  orders: [],
+  loading: false,
+  error: null,
 };
 
-const orderSlice = createSlice({
-  name: "orders",
-  initialState,
+const orderSlice =
+  createSlice({
+    name: "orders",
 
-  reducers: {
-    addOrder: (
-      state,
-      action
+    initialState,
+
+    reducers: {},
+
+    extraReducers: (
+      builder
     ) => {
-      state.orders.unshift(
-        action.payload
-      );
+      builder
 
-      const user = JSON.parse(
-        localStorage.getItem("user")
-      );
+        // Place Order
 
-      localStorage.setItem(
-        `orders_${user.id}`,
-        JSON.stringify(
-          state.orders
+        .addCase(
+          placeOrder.pending,
+          (state) => {
+            state.loading = true;
+          }
         )
-      );
+
+        .addCase(
+          placeOrder.fulfilled,
+          (
+            state,
+            action
+          ) => {
+            state.loading =
+              false;
+
+            state.orders.unshift(
+              action.payload
+            );
+          }
+        )
+
+        .addCase(
+          placeOrder.rejected,
+          (
+            state,
+            action
+          ) => {
+            state.loading =
+              false;
+
+            state.error =
+              action.payload;
+          }
+        )
+
+        // Fetch Orders
+
+        .addCase(
+          fetchOrders.pending,
+          (state) => {
+            state.loading = true;
+          }
+        )
+
+        .addCase(
+          fetchOrders.fulfilled,
+          (
+            state,
+            action
+          ) => {
+            state.loading =
+              false;
+
+            state.orders =
+              action.payload;
+          }
+        )
+
+        .addCase(
+          fetchOrders.rejected,
+          (
+            state,
+            action
+          ) => {
+            state.loading =
+              false;
+
+            state.error =
+              action.payload;
+          }
+        );
     },
-
-    clearOrders: (state) => {
-      state.orders = [];
-
-      const user = JSON.parse(
-        localStorage.getItem("user")
-      );
-
-      localStorage.removeItem(
-        `orders_${user.id}`
-      );
-    },
-
-    loadOrders: (state) => {
-      const user = JSON.parse(
-        localStorage.getItem("user")
-      );
-
-      state.orders =
-        JSON.parse(
-          localStorage.getItem(
-            `orders_${user.id}`
-          )
-        ) || [];
-    },
-  },
-});
-
-export const {
-  addOrder,
-  clearOrders,
-  loadOrders,
-} = orderSlice.actions;
+  });
 
 export default orderSlice.reducer;

@@ -45,7 +45,7 @@ function App() {
       <Route
       path="/admin/products"
       element={
-       <AdminProtectedRoute  dminProtectedRoute>
+       <AdminProtectedRoute >
         <AdminProducts />
       </AdminProtectedRoute>
      }

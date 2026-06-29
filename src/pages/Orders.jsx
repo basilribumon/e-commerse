@@ -1,14 +1,27 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  useSelector,
+  useDispatch,
+} from "react-redux";
+import { fetchOrders } from "../redux/slices/orderSlice";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function Orders() {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate()
   const { orders } = useSelector(
     (state) => state.orders
   );
-
+  const { user } = useSelector(
+  (state) => state.auth
+);
+useEffect(() => {
+  if (user) {
+    dispatch(fetchOrders(user.id));
+  }
+}, [dispatch, user]);
   return (
     <div
       style={{

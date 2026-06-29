@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import { addOrder } from "../redux/slices/orderSlice";
+import { placeOrder } from "../redux/slices/orderSlice";
 import { clearCart } from "../redux/slices/CartSlice";
 import Navbar from "../components/Navbar";
 
@@ -85,7 +85,7 @@ const [paymentMethod, setPaymentMethod] =
   (state) => state.auth
 );
 
-const handlePlaceOrder = () => {
+const handlePlaceOrder = async () => {
   const phoneError = validateField(
     "phone",
     address.phone
@@ -115,21 +115,31 @@ const handlePlaceOrder = () => {
     return;
   }
 
-  const newOrder = {
-    id: Date.now(),
-    items: cartItems,
-    total: totalPrice,
-    date: new Date().toLocaleString(),
-    address,
-    paymentMethod,
-    status: "Order Confirmed",
-  };
+ const newOrder = {
+  userId: user.id,
+  userName: user.name,
+  userEmail: user.email,
 
-  dispatch(addOrder(newOrder));
-  dispatch(clearCart());
+  items: cartItems,
 
-  alert("✅ Order Placed Successfully!");
-  navigate("/orders");
+  total: totalPrice,
+
+  date: new Date().toLocaleString(),
+
+  address,
+
+  paymentMethod,
+
+  status: "Pending",
+};
+
+  await dispatch(placeOrder(newOrder));
+
+dispatch(clearCart());
+
+alert("✅ Order Placed Successfully!");
+
+navigate("/orders");
 };
 
   if (cartItems.length === 0) {
