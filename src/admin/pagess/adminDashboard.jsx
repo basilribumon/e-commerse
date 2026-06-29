@@ -6,13 +6,14 @@ import { fetchAdminDashboardData } from "../redux/adminDashboardSlice";
 function AdminDashboard() {
   const dispatch = useDispatch();
 
-  const {
-    totalProducts,
-    totalUsers,
-    totalOrders,
-    loading,
-    error,
-  } = useSelector((state) => state.adminDashboard);
+const {
+  totalProducts,
+  totalUsers,
+  totalOrders,
+  totalRevenue,
+  loading,
+  error,
+} = useSelector((state) => state.adminDashboard);
 
   useEffect(() => {
     dispatch(fetchAdminDashboardData());
@@ -71,6 +72,15 @@ function AdminDashboard() {
                 {totalOrders}
               </h1>
             </div>
+            <div style={cardStyle}>
+  <h3 style={{ marginBottom: "10px", color: "#555" }}>
+    💰 Total Revenue
+  </h3>
+
+  <h1 style={{ color: "#16a34a", margin: 0 }}>
+    ₹{totalRevenue}
+  </h1>
+</div>
           </div>
         )}
       </div>
