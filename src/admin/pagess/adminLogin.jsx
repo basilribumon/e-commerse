@@ -61,7 +61,23 @@ function AdminLogin() {
           boxShadow:
             "0 5px 20px rgba(0,0,0,0.1)",
         }}
-      >
+      ><button
+            onClick={() =>
+              navigate(
+                "/login"
+              )
+            }
+            style={{
+              background:"#131921",
+              color:"white",
+              border:"none",
+              padding:"5px 10px",
+              borderRadius:"10px",
+              cursor:"pointer",
+            }}
+          >
+            Users
+          </button>
         <div
           style={{
             textAlign: "center",
@@ -77,7 +93,7 @@ function AdminLogin() {
             🛠 Admin Panel
           </h1>
 
-          <h2>Admin Login</h2>
+ 
 
           <p style={{ color: "#666" }}>
             Login to manage products, users and orders
