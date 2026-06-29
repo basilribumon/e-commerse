@@ -13,6 +13,7 @@ import {
 
 function AdminOrders() {
   const dispatch = useDispatch();
+  const [search,setSearch] = useState("");
 
   const [selectedOrder, setSelectedOrder] =
     useState(null);
@@ -40,11 +41,42 @@ function AdminOrders() {
       })
     );
   };
+  const filteredOrders = orders.filter((order) => {
+  const keyword = search.toLowerCase();
+
+  return (
+    order.id.toString().toLowerCase().includes(keyword) ||
+    order.userName.toLowerCase().includes(keyword) ||
+    order.userEmail.toLowerCase().includes(keyword) ||
+    order.status.toLowerCase().includes(keyword)
+  );
+});
 
   return (
     <AdminLayout>
       <h1>📦 Order Management</h1>
-
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "20px",
+  }}
+>
+  <input
+    type="text"
+    placeholder="🔍 Search by Order ID, Customer, Email or Status..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    style={{
+      width: "350px",
+      padding: "10px",
+      borderRadius: "8px",
+      border: "1px solid #ccc",
+      fontSize: "15px",
+    }}
+  />
+</div>
       {loading && (
         <h2>Loading...</h2>
       )}
@@ -79,7 +111,7 @@ function AdminOrders() {
             </thead>
 
             <tbody>
-              {orders.map(
+              {filteredOrders.map(
                 (order) => (
                   <tr
                     key={order.id}

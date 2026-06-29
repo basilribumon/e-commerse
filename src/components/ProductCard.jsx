@@ -1,11 +1,25 @@
-import { useDispatch } from "react-redux";
-import { addToWishlist } from "../redux/slices/wishlistSlice";
+import {
+  useDispatch,
+  useSelector,
+} from "react-redux";
+
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../redux/slices/wishlistSlice";
 import { addToCart } from "../redux/slices/CartSlice";
 import { useNavigate } from "react-router-dom";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { wishlistItems } = useSelector(
+  (state) => state.wishlist
+);
+
+const isWishlisted = wishlistItems.some(
+  (item) => item.id === product.id
+);
 
   return (
     <div
@@ -24,33 +38,32 @@ function ProductCard({ product }) {
     >
       {/* Wishlist Button */}
 
-      <button
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          border: "none",
-          background: "white",
-          borderRadius: "50%",
-          width: "40px",
-          height: "40px",
-          fontSize: "18px",
-          cursor: "pointer",
-          boxShadow:
-            "0 2px 8px rgba(0,0,0,0.15)",
-        }}
-        onClick={() => {
-          dispatch(
-            addToWishlist(product)
-          );
-
-          alert(
-            "❤️ Added to Wishlist"
-          );
-        }}
-      >
-        ❤️
-      </button>
+     <button
+  onClick={() => {
+    if (isWishlisted) {
+      dispatch(removeFromWishlist(product.id));
+    } else {
+      dispatch(addToWishlist(product));
+    }
+  }}
+  style={{
+    position: "absolute",
+    top: "12px",
+    right: "12px",
+    width: "42px",
+    height: "42px",
+    borderRadius: "50%",
+    border: "none",
+    background: "#fff",
+    cursor: "pointer",
+    fontSize: "22px",
+    color: isWishlisted ? "red" : "#999",
+    boxShadow: "0 3px 10px rgba(0,0,0,0.15)",
+    transition: "0.3s",
+  }}
+>
+  {isWishlisted ? "❤️" : "🤍"}
+</button>
 
       {/* Category */}
 

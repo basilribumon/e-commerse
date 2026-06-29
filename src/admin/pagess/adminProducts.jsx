@@ -11,6 +11,7 @@ import {
 
 function AdminProducts() {
   const dispatch = useDispatch();
+  const [search,setSearch] = useState("");
 
  const [editingProduct, setEditingProduct] =
   useState(null);
@@ -52,115 +53,104 @@ useState({
   description: "",
 });
 
-  return (
-    
-    <AdminLayout>
-      
-      
-      <div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: "20px",
-  }}
->
-  <h1>
-    📦 Product Management
-  </h1>
+const filteredProducts = products.filter((product)=>{
+  const keyword = search.toLowerCase();
 
-  <button
-    onClick={() =>
-      setShowAddModal(true)
-    }
-    style={{
-      background: "#28a745",
-      color: "#fff",
-      border: "none",
-      padding: "12px 18px",
-      borderRadius: "8px",
-      cursor: "pointer",
-    }}
-  >
-    ➕ Add Product
-  </button>
-</div>{showAddModal && (
-  <div
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: "rgba(0,0,0,0.5)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 999,
-    }}
-  >
+  return(
+    product.title.toLowerCase().includes(keyword) ||
+    product.category.toLowerCase().includes(keyword)
+  )
+})
+
+
+return (
+  <AdminLayout>
+
+    {/* Header */}
     <div
       style={{
-        width: "500px",
-        background: "#fff",
-        padding: "30px",
-        borderRadius: "15px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "20px",
       }}
     >
-      <h2
+      <h1>📦 Product Management</h1>
+
+      <div
         style={{
-          textAlign: "center",
-          marginBottom: "20px",
+          display: "flex",
+          gap: "15px",
+          alignItems: "center",
         }}
       >
-        ➕ Add Product
-      </h2>
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="🔍 Search Product..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            width: "300px",
+            padding: "10px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            fontSize: "15px",
+          }}
+        />
 
-      <input
-        style={inputStyle}
-        placeholder="Product Title"
-        value={newProduct.title}
-        onChange={(e) =>
-          setNewProduct({
-            ...newProduct,
-            title: e.target.value,
-          })
-        }
-      />
+        {/* Add Product */}
+        <button
+          onClick={() => setShowAddModal(true)}
+          style={{
+            background: "#28a745",
+            color: "#fff",
+            border: "none",
+            padding: "12px 18px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          ➕ Add Product
+        </button>
+      </div>
+    </div>
 
-      <select
-  style={inputStyle}
-  value={newProduct.category}
-  onChange={(e) =>
-    setNewProduct({
-      ...newProduct,
-      category: e.target.value,
-    })
-  }
->
-  <option value="">Select Category</option>
-  <option value="IOS">IOS</option>
-  <option value="Samsung">Samsung</option>
-  <option value="Google">Google</option>
-  <option value="OnePlus">OnePlus</option>
-  <option value="Redme">Redme</option>
-  <option value="Realme">Realme</option>
-  <option value="Oppo">Oppo</option>
-  <option value="Vivo">Vivo</option>
-  <option value="Nothing">Nothing</option>
-</select>
+    {/* Add Product Modal */}
+    {showAddModal && (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "rgba(0,0,0,0.5)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 999,
+        }}
+      >
+        <div
+          style={{
+            width: "500px",
+            background: "#fff",
+            padding: "30px",
+            borderRadius: "15px",
+          }}
+        >
+          <h2
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+            }}
+          >
+            ➕ Add Product
+          </h2>
 
-      <input
-        style={inputStyle}
-        type="number"
-        placeholder="Price"
-        value={newProduct.price}
-        onChange={(e) =>
-          setNewProduct({
-            ...newProduct,
-            price: Number(e.target.value),
-          })
-        }
-      />
+          {/* Your Product Inputs Start Here */}
 
       <input
         style={inputStyle}
@@ -451,7 +441,7 @@ useState({
           </thead>
 
           <tbody>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <tr key={product.id}>
                 <td>
                   <img
