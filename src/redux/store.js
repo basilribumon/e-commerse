@@ -9,6 +9,7 @@ import adminReducer from "../admin/redux/adminSlice"
 import adminDashboardReducer from "../admin/redux/adminDashboardSlice";
 import adminProductReducer from "../admin/redux/adminProductSlice"
 import adminUserReducer  from "../admin/redux/adminUserSlice"
+import adminOrderReducer from "../admin/redux/adminOrderSlice";
 
 
 export const store = configureStore({
@@ -22,5 +23,6 @@ export const store = configureStore({
     adminDashboard: adminDashboardReducer,
     adminProducts: adminProductReducer,
     adminUsers: adminUserReducer,
+    adminOrders: adminOrderReducer,
   },
 });

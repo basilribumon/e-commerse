@@ -164,7 +164,36 @@
       "blocked": false
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "userId": "dCnPIf8BS2U",
+      "userName": "abu",
+      "userEmail": "abu@gmail.com",
+      "items": [
+        {
+          "id": "6",
+          "title": "Samsung galaxy A24",
+          "price": 170,
+          "category": "Samsung",
+          "image": "/images/samsunga24.png",
+          "stock": 8,
+          "description": "Protective case for Samsung Galaxy A24 designed to guard against impacts, scratches, and daily wear while ensuring a comfortable grip."
+        }
+      ],
+      "total": 170,
+      "date": "29/6/2026, 11:41:58 am",
+      "address": {
+        "name": "",
+        "phone": "1234567899",
+        "address": "asdfghjkl",
+        "city": "zxcvbnm",
+        "pincode": "123456"
+      },
+      "paymentMethod": "Cash on Delivery",
+      "status": "Pending",
+      "id": "7ePyQJyptSc"
+    }
+  ],
   "admins": [
     {
       "id": "1",

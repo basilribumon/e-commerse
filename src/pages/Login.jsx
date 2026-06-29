@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/slices/authSlice";
 import { loadWishlist } from "../redux/slices/wishlistSlice";
-import { loadOrders } from "../redux/slices/orderSlice";
 import { loadCart } from "../redux/slices/CartSlice";
 import AdminLogin from "../admin/pagess/adminLogin";
 
@@ -53,7 +52,6 @@ function Login() {
 ) {
   dispatch(loadCart());
   dispatch(loadWishlist());
-  dispatch(loadOrders());
 
   navigate("/");
 }
