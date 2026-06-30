@@ -149,6 +149,57 @@ return (
           >
             ➕ Add Product
           </h2>
+          {/* Product Title */}
+<input
+  style={inputStyle}
+  placeholder="Product Title"
+  value={newProduct.title}
+  onChange={(e) =>
+    setNewProduct({
+      ...newProduct,
+      title: e.target.value,
+    })
+  }
+/>
+
+{/* Category */}
+<select
+  style={inputStyle}
+  value={newProduct.category}
+  onChange={(e) =>
+    setNewProduct({
+      ...newProduct,
+      category: e.target.value,
+    })
+  }
+>
+  <option value="">Select Category</option>
+  <option value="IOS">IOS</option>
+  <option value="Samsung">Samsung</option>
+  <option value="Google">Google</option>
+  <option value="OnePlus">OnePlus</option>
+  <option value="Redmi">Redmi</option>
+  <option value="Realme">Realme</option>
+  <option value="Oppo">Oppo</option>
+  <option value="Vivo">Vivo</option>
+  <option value="Nothing">Nothing</option>
+</select>
+
+{/* Price */}
+<input
+  style={inputStyle}
+  type="number"
+  placeholder="Price"
+  value={newProduct.price}
+  onChange={(e) =>
+    setNewProduct({
+      ...newProduct,
+      price: Number(e.target.value),
+    })
+  }
+/>
+
+
 
           {/* Your Product Inputs Start Here */}
 

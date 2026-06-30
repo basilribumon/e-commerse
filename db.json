@@ -118,13 +118,13 @@
       "description": "Premium protective case designed specifically for iPhone 11, offering excellent protection against drops, scratches, and daily wear. Its slim profile, comfortable grip, and precise cutouts ensure both style and functionality while keeping your device safe."
     },
     {
+      "id": "NJtTimZ24N4",
       "title": "Iphone 18",
       "category": "IOS",
       "price": 200,
-      "stock": 5,
+      "stock": 10,
       "image": "/images/iphone18.png",
-      "description": "Protect your iPhone 18 in style with this premium-quality case, designed for a perfect fit and everyday durability. Made from shock-absorbing materials, it provides reliable protection against drops, scratches, and bumps while maintaining a slim, lightweight profile. Precise cutouts ensure easy access to all buttons, ports, speakers, and cameras, while the anti-slip finish offers a secure and comfortable grip. Compatible with wireless charging, this case combines elegant design with long-lasting protection for your device",
-      "id": "l4qTZe1w1WY"
+      "description": "Iphone 18 "
     }
   ],
   "users": [

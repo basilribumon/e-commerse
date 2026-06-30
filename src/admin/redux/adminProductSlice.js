@@ -50,11 +50,28 @@ export const addProduct = createAsyncThunk(
 
   async (product, thunkAPI) => {
     try {
-      const response =
-        await axios.post(
-          API,
-          product
-        );
+      // Get all existing products
+      const productsRes = await axios.get(API);
+
+      // Find the highest numeric id
+      const maxId = productsRes.data.reduce(
+        (max, item) => {
+          const id = Number(item.id);
+          return id > max ? id : max;
+        },
+        0
+      );
+
+      // Create new product with next id
+      const newProduct = {
+        id: maxId + 1,
+        ...product,
+      };
+
+      const response = await axios.post(
+        API,
+        newProduct
+      );
 
       return response.data;
     } catch (error) {
