@@ -56,7 +56,7 @@ const adminOrderSlice =
 
         .addCase(
           fetchAllOrders.pending,
-          (state) => {
+          (state) => { 
             state.loading = true;
           }
         )

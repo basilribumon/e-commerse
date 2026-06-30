@@ -10,8 +10,7 @@ function Dashboard() {
       <h1>Admin Dashboard</h1>
 
       <div
-        st
-        yle={{
+        style={{
           display: "flex",
           gap: "20px",
           flexWrap: "wrap",
