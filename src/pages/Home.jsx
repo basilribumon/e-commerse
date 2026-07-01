@@ -64,13 +64,9 @@ const handleLogout = () => {
 
   let filteredProducts =
     products.filter((product) =>
-      product.title
-        .toLowerCase()
-        .includes(
-          searchTerm
-            .toLowerCase()
-            .trim()
-        )
+      product.title.toLowerCase()
+     .includes(searchTerm.toLowerCase().trim()
+     )
     );
 
   if (
