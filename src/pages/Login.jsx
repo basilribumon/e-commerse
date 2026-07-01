@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/slices/authSlice";
 import { loadWishlist } from "../redux/slices/wishlistSlice";
 import { loadCart } from "../redux/slices/CartSlice";
-import AdminLogin from "../admin/pagess/adminLogin";
+
 
 
 function Login() {

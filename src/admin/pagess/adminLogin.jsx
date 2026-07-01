@@ -35,7 +35,7 @@ function AdminLogin() {
 
       navigate("/admin/dashboard");
     } else {
-      alert("Invalid Admin Credentials");
+      alert("Invalid Admin Email or password");
     }
   };
 
