@@ -227,7 +227,7 @@
         "pincode": "123456"
       },
       "paymentMethod": "Cash on Delivery",
-      "status": "Shipped",
+      "status": "Delivered",
       "id": "c_BEMTLxkTs"
     },
     {
@@ -257,6 +257,34 @@
       "paymentMethod": "UPI",
       "status": "Pending",
       "id": "__dZgcVijmU"
+    },
+    {
+      "userId": "dCnPIf8BS2U",
+      "userName": "abu",
+      "userEmail": "abu@gmail.com",
+      "items": [
+        {
+          "id": "14",
+          "title": "Redme 9",
+          "price": 100,
+          "category": "Redme",
+          "image": "/images/redme9.png",
+          "stock": 8,
+          "description": "Reliable and affordable Redmi 9 case that provides essential protection while maintaining a simple and practical design"
+        }
+      ],
+      "total": 100,
+      "date": "1/7/2026, 4:14:34 pm",
+      "address": {
+        "name": "",
+        "phone": "9999999999",
+        "address": "oooooooooo",
+        "city": "oooooooo",
+        "pincode": "999999"
+      },
+      "paymentMethod": "UPI",
+      "status": "Processing",
+      "id": "MEBr6duenno"
     }
   ],
   "admins": [

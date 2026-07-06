@@ -160,16 +160,11 @@ function AdminUsers() {
                         user.blocked
                           ? "green"
                           : "red",
-                      color:
-                        "white",
-                      border:
-                        "none",
-                      padding:
-                        "8px 15px",
-                      borderRadius:
-                        "8px",
-                      cursor:
-                        "pointer",
+                      color:"white",
+                      border:"none",
+                      padding:"8px 15px",
+                      borderRadius:"8px",
+                      cursor: "pointer",
                     }}
                   >
                     {user.blocked

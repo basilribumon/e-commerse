@@ -26,8 +26,14 @@ login: async (email, password) => {
 
   console.log("Matched User:", user);
 
+
   if (!user) {
     throw new Error("Invalid Email or Password");
+  }
+
+
+  if (user.blocked) {
+    throw new Error("Your account has been blocked by the admin.");
   }
 
   return user;
