@@ -26,19 +26,28 @@ function AdminUsers() {
     (state) =>
       state.adminUsers
   );
+  const [statusFilter, setStatusFilter] = useState("All");
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const filteredUsers = users.filter((user) =>
-  user.name
-    .toLowerCase()
-    .includes(search.toLowerCase()) ||
-  user.email
-    .toLowerCase()
-    .includes(search.toLowerCase())
-);
+const filteredUsers = users.filter((user) => {
+  const keyword = search.toLowerCase();
+
+  const matchesSearch =
+    user.name.toLowerCase().includes(keyword) ||
+    user.email.toLowerCase().includes(keyword);
+
+  const matchesStatus =
+    statusFilter === "All" ||
+    (statusFilter === "Active" && !user.blocked) ||
+    (statusFilter === "Blocked" && user.blocked);
+
+  return matchesSearch && matchesStatus;
+});
+
+
 
   return (
     <AdminLayout>
@@ -68,6 +77,26 @@ function AdminUsers() {
       fontSize: "15px",
     }}
   />
+</div>
+<div
+  style={{
+    display: "flex",
+    gap: "10px",
+    marginTop: "15px",
+    marginBottom: "15px",
+  }}
+>
+  <button onClick={() => setStatusFilter("All")}>
+    All
+  </button>
+
+  <button onClick={() => setStatusFilter("Active")}>
+    Active
+  </button>
+
+  <button onClick={() => setStatusFilter("Blocked")}>
+    Blocked
+  </button>
 </div>
 
       {loading ? (

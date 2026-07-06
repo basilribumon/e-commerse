@@ -21,7 +21,7 @@ export const fetchAllOrders =
     }
   );
 
-// Update Order Status
+
 export const updateOrderStatus =
   createAsyncThunk(
     "adminOrders/updateOrderStatus",
