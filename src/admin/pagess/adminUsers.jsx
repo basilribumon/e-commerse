@@ -1,103 +1,77 @@
-import {
-  useEffect,useState
-} from "react";
+import { useEffect, useState } from "react";
 
-import {
-  useDispatch,
-  useSelector,
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import AdminLayout from "../../layouts/AdminLayout";
 
-import {
-  fetchUsers,
-  updateUserStatus,
-} from "../redux/adminUserSlice";
+import { fetchUsers, updateUserStatus } from "../redux/adminUserSlice";
 
 function AdminUsers() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [showPassword, setShowPassword] = useState({});
 
-  const {
-    users,
-    loading,
-  } = useSelector(
-    (state) =>
-      state.adminUsers
-  );
+  const { users, loading } = useSelector((state) => state.adminUsers);
   const [statusFilter, setStatusFilter] = useState("All");
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-const filteredUsers = users.filter((user) => {
-  const keyword = search.toLowerCase();
+  const filteredUsers = users.filter((user) => {
+    const keyword = search.toLowerCase();
 
-  const matchesSearch =
-    user.name.toLowerCase().includes(keyword) ||
-    user.email.toLowerCase().includes(keyword);
+    const matchesSearch =
+      user.name.toLowerCase().includes(keyword) ||
+      user.email.toLowerCase().includes(keyword);
 
-  const matchesStatus =
-    statusFilter === "All" ||
-    (statusFilter === "Active" && !user.blocked) ||
-    (statusFilter === "Blocked" && user.blocked);
+    const matchesStatus =
+      statusFilter === "All" ||
+      (statusFilter === "Active" && !user.blocked) ||
+      (statusFilter === "Blocked" && user.blocked);
 
-  return matchesSearch && matchesStatus;
-});
-
-
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <AdminLayout>
-      <h1>
-        👤 User Management
-      </h1>
+      <h1>👤 User Management</h1>
       <div
-  style={{
-    marginBottom: "20px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  }}
->
-  <input
-    type="text"
-    placeholder="🔍 Search by name or email..."
-    value={search}
-    onChange={(e) =>
-      setSearch(e.target.value)
-    }
-    style={{
-      width: "320px",
-      padding: "10px",
-      borderRadius: "8px",
-      border: "1px solid #ccc",
-      fontSize: "15px",
-    }}
-  />
-</div>
-<div
-  style={{
-    display: "flex",
-    gap: "10px",
-    marginTop: "15px",
-    marginBottom: "15px",
-  }}
->
-  <button onClick={() => setStatusFilter("All")}>
-    All
-  </button>
+        style={{
+          marginBottom: "20px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="🔍 Search by name or email..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            width: "320px",
+            padding: "10px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            fontSize: "15px",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginTop: "15px",
+          marginBottom: "15px",
+        }}
+      >
+        <button onClick={() => setStatusFilter("All")}>All</button>
 
-  <button onClick={() => setStatusFilter("Active")}>
-    Active
-  </button>
+        <button onClick={() => setStatusFilter("Active")}>Active</button>
 
-  <button onClick={() => setStatusFilter("Blocked")}>
-    Blocked
-  </button>
-</div>
+        <button onClick={() => setStatusFilter("Blocked")}>Blocked</button>
+      </div>
 
       {loading ? (
         <h2>Loading...</h2>
@@ -107,8 +81,7 @@ const filteredUsers = users.filter((user) => {
           cellPadding="10"
           style={{
             width: "100%",
-            borderCollapse:
-              "collapse",
+            borderCollapse: "collapse",
             marginTop: "20px",
           }}
         >
@@ -125,80 +98,58 @@ const filteredUsers = users.filter((user) => {
 
           <tbody>
             {filteredUsers.map((user) => (
-              <tr
-                key={user.id}
-              >
+              <tr key={user.id}>
+                <td>{user.id}</td>
+
+                <td>{user.name}</td>
+
+                <td>{user.email}</td>
                 <td>
-                  {user.id}
+                  {showPassword[user.id] ? user.password : "••••••••"}
+
+                  <button
+                    onClick={() =>
+                      setShowPassword((prev) => ({
+                        ...prev,
+                        [user.id]: !prev[user.id],
+                      }))
+                    }
+                    style={{
+                      marginLeft: "10px",
+                      padding: "4px 8px",
+                      border: "none",
+                      background: "#0d6efd",
+                      color: "white",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {showPassword[user.id] ? "🙈 Hide" : "👁 View"}
+                  </button>
                 </td>
 
-                <td>
-                  {user.name}
-                </td>
-
-                <td>
-                  {user.email}
-                </td>
-                <td>
-  {showPassword[user.id]
-    ? user.password
-    : "••••••••"}
-
-  <button
-    onClick={() =>
-      setShowPassword((prev) => ({
-        ...prev,
-        [user.id]: !prev[user.id],
-      }))
-    }
-    style={{
-      marginLeft: "10px",
-      padding: "4px 8px",
-      border: "none",
-      background: "#0d6efd",
-      color: "white",
-      borderRadius: "5px",
-      cursor: "pointer",
-    }}
-  >
-    {showPassword[user.id] ? "🙈 Hide" : "👁 View"}
-  </button>
-</td>
-
-                <td>
-                  {user.blocked
-                    ? "Blocked"
-                    : "Active"}
-                </td>
+                <td>{user.blocked ? "Blocked" : "Active"}</td>
 
                 <td>
                   <button
                     onClick={() => {
                       dispatch(
-                        updateUserStatus(
-                          {
-                            ...user,
-                            blocked:
-                              !user.blocked,
-                          }
-                        )
+                        updateUserStatus({
+                          ...user,
+                          blocked: !user.blocked,
+                        }),
                       );
                     }}
                     style={{
-                      background:
-                        user.blocked
-                          ? "green"
-                          : "red",
-                      color:"white",
-                      border:"none",
-                      padding:"8px 15px",
-                      borderRadius:"8px",
+                      background: user.blocked ? "green" : "red",
+                      color: "white",
+                      border: "none",
+                      padding: "8px 15px",
+                      borderRadius: "8px",
                       cursor: "pointer",
                     }}
                   >
-                    {user.blocked
-                      ? "Unblock"
-                      : "Block"}
+                    {user.blocked ? "Unblock" : "Block"}
                   </button>
                 </td>
               </tr>

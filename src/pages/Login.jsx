@@ -5,19 +5,13 @@ import { loginUser } from "../redux/slices/authSlice";
 import { loadWishlist } from "../redux/slices/wishlistSlice";
 import { loadCart } from "../redux/slices/CartSlice";
 
-
-
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
-  const { loading, error } =
-    useSelector(
-      (state) => state.auth
-    );
+  const { loading, error } = useSelector((state) => state.auth);
 
-  const [credentials,setCredential] = useState({
+  const [credentials, setCredential] = useState({
     email: "",
     password: "",
   });
@@ -25,113 +19,81 @@ function Login() {
   const handleChange = (e) => {
     setCredential({
       ...credentials,
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit =
-    async (e) => {
-      e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      const result =
-        await dispatch(
-          loginUser(
-            credentials
-          )
-        );
+    const result = await dispatch(loginUser(credentials));
 
-     if (
-  loginUser.fulfilled.match(
-    result
-  ) &&
-  result.payload
-) {
-  dispatch(loadCart());
-  dispatch(loadWishlist());
+    if (loginUser.fulfilled.match(result) && result.payload) {
+      dispatch(loadCart());
+      dispatch(loadWishlist());
 
-  navigate("/");
-}
-    };
+      navigate("/");
+    }
+  };
 
   return (
-    
     <div
       style={{
         minHeight: "100vh",
         display: "flex",
-        justifyContent:
-          "center",
+        justifyContent: "center",
         alignItems: "center",
-        background:
-          "linear-gradient(135deg,#f0f8ff,#d6ecff)",
+        background: "linear-gradient(135deg,#f0f8ff,#d6ecff)",
         padding: "20px",
       }}
     >
-      
       <div
         style={{
           width: "100%",
           maxWidth: "420px",
-          background:
-            "white",
-          borderRadius:
-            "20px",
+          background: "white",
+          borderRadius: "20px",
           padding: "35px",
-          boxShadow:
-            "0 5px 20px rgba(0,0,0,0.1)",
+          boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
         }}
       >
-         <button
-            onClick={() =>
-              navigate("/admin-login")}
-            style={{
-              background:"#131921",
-              color:"white",
-              border:"none",
-              padding:"5px 10px",
-              borderRadius:"10px",
-              cursor:"pointer",
-            }}
-          >
-            Admin
-          </button>
-        <div
+        <button
+          onClick={() => navigate("/admin-login")}
           style={{
-            textAlign:
-              "center",
-            marginBottom:
-              "25px",
+            background: "#131921",
+            color: "white",
+            border: "none",
+            padding: "5px 10px",
+            borderRadius: "10px",
+            cursor: "pointer",
           }}
         >
-          <h1 style={{color:"#131921",marginBottom:"10px",}}>
-            📱 CaseHub
-          </h1>
+          Admin
+        </button>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "25px",
+          }}
+        >
+          <h1 style={{ color: "#131921", marginBottom: "10px" }}>📱 CaseHub</h1>
 
-          <h2>
-            Welcome Back
-          </h2>
+          <h2>Welcome Back</h2>
 
           <p
             style={{
-              color:
-                "#666",
+              color: "#666",
             }}
           >
-            Login to continue
-            shopping
+            Login to continue shopping
           </p>
         </div>
 
         <form
-          onSubmit={
-            handleSubmit
-          }
+          onSubmit={handleSubmit}
           style={{
-            display:
-              "flex",
-            flexDirection:
-              "column",
+            display: "flex",
+            flexDirection: "column",
             gap: "15px",
           }}
         >
@@ -139,22 +101,14 @@ function Login() {
             type="email"
             name="email"
             placeholder="📧 Email Address"
-            value={
-              credentials.email
-            }
-            onChange={
-              handleChange
-            }
+            value={credentials.email}
+            onChange={handleChange}
             required
             style={{
-              padding:
-                "14px",
-              border:
-                "1px solid #d6ecff",
-              borderRadius:
-                "10px",
-              fontSize:
-                "15px",
+              padding: "14px",
+              border: "1px solid #d6ecff",
+              borderRadius: "10px",
+              fontSize: "15px",
             }}
           />
 
@@ -162,58 +116,38 @@ function Login() {
             type="password"
             name="password"
             placeholder="🔒 Password"
-            value={
-              credentials.password
-            }
-            onChange={
-              handleChange
-            }
+            value={credentials.password}
+            onChange={handleChange}
             required
             style={{
-              padding:
-                "14px",
-              border:
-                "1px solid #d6ecff",
-              borderRadius:
-                "10px",
-              fontSize:
-                "15px",
+              padding: "14px",
+              border: "1px solid #d6ecff",
+              borderRadius: "10px",
+              fontSize: "15px",
             }}
           />
 
           <button
             type="submit"
             style={{
-              background:
-                "linear-gradient(135deg,#4facfe,#00f2fe)",
-              color:
-                "white",
-              border:
-                "none",
-              padding:
-                "14px",
-              borderRadius:
-                "10px",
-              fontSize:
-                "16px",
-              fontWeight:
-                "bold",
-              cursor:
-                "pointer",
+              background: "linear-gradient(135deg,#4facfe,#00f2fe)",
+              color: "white",
+              border: "none",
+              padding: "14px",
+              borderRadius: "10px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
             }}
           >
-            {loading
-              ? "Logging In..."
-              : "Login"}
+            {loading ? "Logging In..." : "Login"}
           </button>
 
           {error && (
             <p
               style={{
-                color:
-                  "red",
-                textAlign:
-                  "center",
+                color: "red",
+                textAlign: "center",
               }}
             >
               {error}
@@ -223,43 +157,25 @@ function Login() {
 
         <div
           style={{
-            textAlign:
-              "center",
-            marginTop:
-              "20px",
+            textAlign: "center",
+            marginTop: "20px",
           }}
         >
-          <p>
-            Don't have an
-            account?
-          </p>
+          <p>Don't have an account?</p>
 
           <button
-            onClick={() =>
-              navigate(
-                "/register"
-              )
-            }
+            onClick={() => navigate("/register")}
             style={{
-              background:
-                "#131921",
-              color:
-                "white",
-              border:
-                "none",
-              padding:
-                "12px 20px",
-              borderRadius:
-                "10px",
-              cursor:
-                "pointer",
+              background: "#131921",
+              color: "white",
+              border: "none",
+              padding: "12px 20px",
+              borderRadius: "10px",
+              cursor: "pointer",
             }}
           >
             Create Account
           </button>
-
-         
-          
         </div>
       </div>
     </div>

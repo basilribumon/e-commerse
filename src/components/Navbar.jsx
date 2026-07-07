@@ -14,8 +14,7 @@ function Navbar({
 }) {
   const navigate = useNavigate();
 
-  const [showSettings, setShowSettings] =
-    useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const buttonStyle = {
     backgroundColor: "#232f3e",
@@ -42,8 +41,7 @@ function Navbar({
         gap: "15px",
         zIndex: "1000",
         boxSizing: "border-box",
-        boxShadow:
-          "0 2px 10px rgba(0,0,0,0.2)",
+        boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
       }}
     >
       {/* Logo */}
@@ -74,9 +72,7 @@ function Navbar({
           placeholder="🔍 Search Products..."
           value={searchTerm}
           onChange={(e) => {
-            setSearchTerm(
-              e.target.value
-            );
+            setSearchTerm(e.target.value);
             setCurrentPage(1);
           }}
           style={{
@@ -91,9 +87,7 @@ function Navbar({
         <select
           value={selectedCategory}
           onChange={(e) => {
-            setSelectedCategory(
-              e.target.value
-            );
+            setSelectedCategory(e.target.value);
             setCurrentPage(1);
           }}
           style={{
@@ -102,29 +96,17 @@ function Navbar({
             border: "none",
           }}
         >
-          <option value="All">
-            All Categories
-          </option>
-          <option value="IOS">
-            IOS
-          </option>
-          <option value="Redme">
-            Redme
-          </option>
-          <option value="Vivo">
-            Vivo
-          </option>
-          <option value="Samsung">
-            Samsung
-          </option>
+          <option value="All">All Categories</option>
+          <option value="IOS">IOS</option>
+          <option value="Redme">Redme</option>
+          <option value="Vivo">Vivo</option>
+          <option value="Samsung">Samsung</option>
         </select>
 
         <select
           value={sortOrder}
           onChange={(e) => {
-            setSortOrder(
-              e.target.value
-            );
+            setSortOrder(e.target.value);
             setCurrentPage(1);
           }}
           style={{
@@ -133,17 +115,11 @@ function Navbar({
             border: "none",
           }}
         >
-          <option value="">
-            Sort By Price
-          </option>
+          <option value="">Sort By Price</option>
 
-          <option value="lowToHigh">
-            Price: Low → High
-          </option>
+          <option value="lowToHigh">Price: Low → High</option>
 
-          <option value="highToLow">
-            Price: High → Low
-          </option>
+          <option value="highToLow">Price: High → Low</option>
         </select>
       </div>
 
@@ -157,40 +133,18 @@ function Navbar({
           flexWrap: "wrap",
         }}
       >
-        <button
-          style={buttonStyle}
-          onClick={() =>
-            navigate("/")
-          }
-        >
+        <button style={buttonStyle} onClick={() => navigate("/")}>
           🏠 Home
         </button>
 
-        <button
-          style={buttonStyle}
-          onClick={() =>
-            navigate("/cart")
-          }
-        >
+        <button style={buttonStyle} onClick={() => navigate("/cart")}>
           🛒 Cart
         </button>
-        <button
-          style={buttonStyle}
-          onClick={() =>
-            navigate("/orders")
-          }
-        >
+        <button style={buttonStyle} onClick={() => navigate("/orders")}>
           🚚 Orders
         </button>
 
-        <button
-          style={buttonStyle}
-          onClick={() =>
-            navigate(
-              "/wishlist"
-            )
-          }
-        >
+        <button style={buttonStyle} onClick={() => navigate("/wishlist")}>
           ❤️ Wishlist
         </button>
 
@@ -198,19 +152,12 @@ function Navbar({
 
         <div
           style={{
-            position:
-              "relative",
+            position: "relative",
           }}
         >
           <button
-            style={
-              buttonStyle
-            }
-            onClick={() =>
-              setShowSettings(
-                !showSettings
-              )
-            }
+            style={buttonStyle}
+            onClick={() => setShowSettings(!showSettings)}
           >
             ⚙️ Settings
           </button>
@@ -218,39 +165,33 @@ function Navbar({
           {showSettings && (
             <div
               style={{
-                position:
-                  "absolute",
+                position: "absolute",
                 top: "50px",
                 right: "0",
-                background:
-                  "white",
-                padding:
-                  "15px",
-                borderRadius:
-                  "10px",
-                boxShadow:
-                  "0 2px 10px rgba(0,0,0,0.2)",
-                minWidth:
-                  "150px",
+                background: "white",
+                padding: "15px",
+                borderRadius: "10px",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+                minWidth: "150px",
               }}
             >
               <ThemeToggle />
 
-            <button
-  onClick={handleLogout}
-  style={{
-    width: "100%",
-    marginTop: "10px",
-    padding: "8px",
-    border: "none",
-    borderRadius: "6px",
-    background: "#ff4d4f",
-    color: "white",
-    cursor: "pointer",
-  }}
->
-  Logout
-</button>
+              <button
+                onClick={handleLogout}
+                style={{
+                  width: "100%",
+                  marginTop: "10px",
+                  padding: "8px",
+                  border: "none",
+                  borderRadius: "6px",
+                  background: "#ff4d4f",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </button>
             </div>
           )}
         </div>
