@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import orderService from "../../services/orderService";
 
-// Place Order
 export const placeOrder = createAsyncThunk(
   "orders/placeOrder",
 
@@ -15,7 +14,6 @@ export const placeOrder = createAsyncThunk(
   },
 );
 
-// Fetch Logged-in User Orders
 export const fetchOrders = createAsyncThunk(
   "orders/fetchOrders",
 
@@ -43,8 +41,6 @@ const orderSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-
-      // Place Order
 
       .addCase(placeOrder.pending, (state) => {
         state.loading = true;
