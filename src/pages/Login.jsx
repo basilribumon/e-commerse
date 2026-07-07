@@ -17,10 +17,7 @@ function Login() {
       (state) => state.auth
     );
 
-  const [
-    credentials,
-    setCredential,
-  ] = useState({
+  const [credentials,setCredential] = useState({
     email: "",
     password: "",
   });
@@ -87,10 +84,7 @@ function Login() {
       >
          <button
             onClick={() =>
-              navigate(
-                "/admin-login"
-              )
-            }
+              navigate("/admin-login")}
             style={{
               background:"#131921",
               color:"white",
@@ -110,14 +104,7 @@ function Login() {
               "25px",
           }}
         >
-          <h1
-            style={{
-              color:
-                "#131921",
-              marginBottom:
-                "10px",
-            }}
-          >
+          <h1 style={{color:"#131921",marginBottom:"10px",}}>
             📱 CaseHub
           </h1>
 
