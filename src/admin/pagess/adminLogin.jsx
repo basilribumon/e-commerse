@@ -30,7 +30,7 @@ function AdminLogin() {
         loginAdmin({
           email: credentials.email,
           name: "Admin",
-        })
+        }),
       );
 
       navigate("/admin/dashboard");
@@ -46,8 +46,7 @@ function AdminLogin() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background:
-          "linear-gradient(135deg,#e0f2ff,#f8fbff)",
+        background: "linear-gradient(135deg,#e0f2ff,#f8fbff)",
         padding: "20px",
       }}
     >
@@ -58,26 +57,22 @@ function AdminLogin() {
           background: "white",
           borderRadius: "20px",
           padding: "35px",
-          boxShadow:
-            "0 5px 20px rgba(0,0,0,0.1)",
+          boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
         }}
-      ><button
-            onClick={() =>
-              navigate(
-                "/login"
-              )
-            }
-            style={{
-              background:"#131921",
-              color:"white",
-              border:"none",
-              padding:"5px 10px",
-              borderRadius:"10px",
-              cursor:"pointer",
-            }}
-          >
-            Users
-          </button>
+      >
+        <button
+          onClick={() => navigate("/login")}
+          style={{
+            background: "#131921",
+            color: "white",
+            border: "none",
+            padding: "5px 10px",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+        >
+          Users
+        </button>
         <div
           style={{
             textAlign: "center",
@@ -92,8 +87,6 @@ function AdminLogin() {
           >
             🛠 Admin Panel
           </h1>
-
- 
 
           <p style={{ color: "#666" }}>
             Login to manage products, users and orders
@@ -141,8 +134,7 @@ function AdminLogin() {
           <button
             type="submit"
             style={{
-              background:
-                "linear-gradient(135deg,#4facfe,#00f2fe)",
+              background: "linear-gradient(135deg,#4facfe,#00f2fe)",
               color: "white",
               border: "none",
               padding: "14px",

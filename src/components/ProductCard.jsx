@@ -1,7 +1,4 @@
-import {
-  useDispatch,
-  useSelector,
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   addToWishlist,
@@ -13,23 +10,17 @@ import { useNavigate } from "react-router-dom";
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { wishlistItems } = useSelector(
-  (state) => state.wishlist
-);
+  const { wishlistItems } = useSelector((state) => state.wishlist);
 
-const isWishlisted = wishlistItems.some(
-  (item) => item.id === product.id
-);
+  const isWishlisted = wishlistItems.some((item) => item.id === product.id);
 
   return (
     <div
       style={{
-        background:
-          "linear-gradient(135deg,#ffffff,#d6ecff)",
+        background: "linear-gradient(135deg,#ffffff,#d6ecff)",
         borderRadius: "20px",
         padding: "15px",
-        boxShadow:
-          "0 5px 15px rgba(0,0,0,0.1)",
+        boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
         textAlign: "center",
         position: "relative",
         transition: "0.3s",
@@ -38,32 +29,32 @@ const isWishlisted = wishlistItems.some(
     >
       {/* Wishlist Button */}
 
-     <button
-  onClick={() => {
-    if (isWishlisted) {
-      dispatch(removeFromWishlist(product.id));
-    } else {
-      dispatch(addToWishlist(product));
-    }
-  }}
-  style={{
-    position: "absolute",
-    top: "12px",
-    right: "12px",
-    width: "42px",
-    height: "42px",
-    borderRadius: "50%",
-    border: "none",
-    background: "#fff",
-    cursor: "pointer",
-    fontSize: "22px",
-    color: isWishlisted ? "red" : "#999",
-    boxShadow: "0 3px 10px rgba(0,0,0,0.15)",
-    transition: "0.3s",
-  }}
->
-  {isWishlisted ? "❤️" : "🤍"}
-</button>
+      <button
+        onClick={() => {
+          if (isWishlisted) {
+            dispatch(removeFromWishlist(product.id));
+          } else {
+            dispatch(addToWishlist(product));
+          }
+        }}
+        style={{
+          position: "absolute",
+          top: "12px",
+          right: "12px",
+          width: "42px",
+          height: "42px",
+          borderRadius: "50%",
+          border: "none",
+          background: "#fff",
+          cursor: "pointer",
+          fontSize: "22px",
+          color: isWishlisted ? "red" : "#999",
+          boxShadow: "0 3px 10px rgba(0,0,0,0.15)",
+          transition: "0.3s",
+        }}
+      >
+        {isWishlisted ? "❤️" : "🤍"}
+      </button>
 
       {/* Category */}
 
@@ -134,8 +125,7 @@ const isWishlisted = wishlistItems.some(
 
         <button
           style={{
-            background:
-              "linear-gradient(135deg,#4facfe,#00f2fe)",
+            background: "linear-gradient(135deg,#4facfe,#00f2fe)",
             color: "white",
             border: "none",
             padding: "10px",
@@ -145,17 +135,11 @@ const isWishlisted = wishlistItems.some(
             cursor: "pointer",
           }}
           onClick={() => {
-            dispatch(
-              addToCart(product)
-            );
+            dispatch(addToCart(product));
 
-            alert(
-              "✅ Product added to Buy"
-            );
+            alert("✅ Product added to Buy");
 
-            navigate(
-              "/checkout"
-            );
+            navigate("/checkout");
           }}
         >
           Buy Now
@@ -165,19 +149,14 @@ const isWishlisted = wishlistItems.some(
 
         <button
           style={{
-            background:
-              "#131921",
+            background: "#131921",
             color: "white",
             border: "none",
             padding: "10px",
             borderRadius: "10px",
             cursor: "pointer",
           }}
-          onClick={() =>
-            navigate(
-              `/productdetails/${product.id}`
-            )
-          }
+          onClick={() => navigate(`/productdetails/${product.id}`)}
         >
           View Details
         </button>
@@ -186,24 +165,18 @@ const isWishlisted = wishlistItems.some(
 
         <button
           style={{
-            background:
-              "#ffffff",
-            border:
-              "2px solid #4facfe",
+            background: "#ffffff",
+            border: "2px solid #4facfe",
             padding: "10px",
             borderRadius: "10px",
             cursor: "pointer",
             fontWeight: "bold",
-            color:"black"
+            color: "black",
           }}
           onClick={() => {
-            dispatch(
-              addToCart(product)
-            );
+            dispatch(addToCart(product));
 
-            alert(
-              "🛒 Added to Cart"
-            );
+            alert("🛒 Added to Cart");
           }}
         >
           Add To Cart

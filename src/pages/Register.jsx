@@ -7,13 +7,9 @@ function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, error } =
-    useSelector(
-      (state) => state.auth
-    );
+  const { loading, error } = useSelector((state) => state.auth);
 
-  const [formData, setFormData] =
-  useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
@@ -23,58 +19,49 @@ function Register() {
   const handleChange = (e) =>
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.value,
+      [e.target.name]: e.target.value,
     });
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!formData.name.trim()) {
-    alert("❌ Name cannot be empty");
-    return;
-  }
+    if (!formData.name.trim()) {
+      alert("❌ Name cannot be empty");
+      return;
+    }
 
+    if (!formData.password.trim()) {
+      alert("❌ Password cannot be empty");
+      return;
+    }
 
-  if (!formData.password.trim()) {
-    alert("❌ Password cannot be empty");
-    return;
-  }
+    if (formData.password !== formData.confirmPassword) {
+      alert("❌ Passwords do not match");
+      return;
+    }
 
-  if (
-    formData.password !==
-    formData.confirmPassword
-  ) {
-    alert("❌ Passwords do not match");
-    return;
-  }
+    const result = await dispatch(
+      registerUser({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        password: formData.password,
+      }),
+    );
 
-  const result = await dispatch(
-    registerUser({
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      password: formData.password,
-    })
-  );
-
-  if (
-    registerUser.fulfilled.match(result)
-  ) {
-    alert("✅ Registration Successful");
-    navigate("/login");
-  }
-};
+    if (registerUser.fulfilled.match(result)) {
+      alert("✅ Registration Successful");
+      navigate("/login");
+    }
+  };
 
   return (
     <div
       style={{
         minHeight: "100vh",
         display: "flex",
-        justifyContent:
-          "center",
+        justifyContent: "center",
         alignItems: "center",
-        background:
-          "linear-gradient(135deg,#f0f8ff,#d6ecff)",
+        background: "linear-gradient(135deg,#f0f8ff,#d6ecff)",
         padding: "20px",
       }}
     >
@@ -82,56 +69,42 @@ const handleSubmit = async (e) => {
         style={{
           width: "100%",
           maxWidth: "450px",
-          background:
-            "white",
-          borderRadius:
-            "20px",
+          background: "white",
+          borderRadius: "20px",
           padding: "35px",
-          boxShadow:
-            "0 5px 20px rgba(0,0,0,0.1)",
+          boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
         }}
       >
         <div
           style={{
-            textAlign:
-              "center",
-            marginBottom:
-              "25px",
+            textAlign: "center",
+            marginBottom: "25px",
           }}
         >
           <h1
             style={{
-              color:
-                "#131921",
+              color: "#131921",
             }}
           >
             📱 CaseHub
           </h1>
 
-          <h2>
-            Create Account
-          </h2>
+          <h2>Create Account</h2>
 
           <p
             style={{
-              color:
-                "#666",
+              color: "#666",
             }}
           >
-            Join CaseHub and
-            start shopping
+            Join CaseHub and start shopping
           </p>
         </div>
 
         <form
-          onSubmit={
-            handleSubmit
-          }
+          onSubmit={handleSubmit}
           style={{
-            display:
-              "flex",
-            flexDirection:
-              "column",
+            display: "flex",
+            flexDirection: "column",
             gap: "15px",
           }}
         >
@@ -139,22 +112,14 @@ const handleSubmit = async (e) => {
             type="text"
             name="name"
             placeholder="👤 Full Name"
-            value={
-              formData.name
-            }
-            onChange={
-              handleChange
-            }
+            value={formData.name}
+            onChange={handleChange}
             required
             style={{
-              padding:
-                "14px",
-              border:
-                "1px solid #d6ecff",
-              borderRadius:
-                "10px",
-              fontSize:
-                "15px",
+              padding: "14px",
+              border: "1px solid #d6ecff",
+              borderRadius: "10px",
+              fontSize: "15px",
             }}
           />
 
@@ -162,22 +127,14 @@ const handleSubmit = async (e) => {
             type="email"
             name="email"
             placeholder="📧 Email Address"
-            value={
-              formData.email
-            }
-            onChange={
-              handleChange
-            }
+            value={formData.email}
+            onChange={handleChange}
             required
             style={{
-              padding:
-                "14px",
-              border:
-                "1px solid #d6ecff",
-              borderRadius:
-                "10px",
-              fontSize:
-                "15px",
+              padding: "14px",
+              border: "1px solid #d6ecff",
+              borderRadius: "10px",
+              fontSize: "15px",
             }}
           />
 
@@ -185,77 +142,64 @@ const handleSubmit = async (e) => {
             type="password"
             name="password"
             placeholder="🔒 Password"
-            value={
-              formData.password
-            }
-            onChange={
-              handleChange
-            }
+            value={formData.password}
+            onChange={handleChange}
             required
             style={{
-              padding:
-                "14px",
-              border:
-                "1px solid #d6ecff",
-              borderRadius:
-                "10px",
-              fontSize:
-                "15px",
+              padding: "14px",
+              border: "1px solid #d6ecff",
+              borderRadius: "10px",
+              fontSize: "15px",
             }}
           />
 
           <input
-  type="password"
-  name="confirmPassword"
-  placeholder="🔐 Confirm Password"
-  value={
-    formData.confirmPassword
-  }
-  onChange={handleChange}
-  required
-  style={{
-    padding: "14px",
-    border: "1px solid #d6ecff",
-    borderRadius: "10px",
-    fontSize: "15px",
-  }}
-/>
-{formData.confirmPassword &&
-  formData.password !==
-    formData.confirmPassword && (
-    <p
-      style={{
-        color: "red",
-        margin: 0,
-      }}
-    >
-      Passwords do not match
-    </p>
-)}
+            type="password"
+            name="confirmPassword"
+            placeholder="🔐 Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+            style={{
+              padding: "14px",
+              border: "1px solid #d6ecff",
+              borderRadius: "10px",
+              fontSize: "15px",
+            }}
+          />
+          {formData.confirmPassword &&
+            formData.password !== formData.confirmPassword && (
+              <p
+                style={{
+                  color: "red",
+                  margin: 0,
+                }}
+              >
+                Passwords do not match
+              </p>
+            )}
 
           <button
             type="submit"
             style={{
-              background:"linear-gradient(135deg,#4facfe,#00f2fe)",
-              color:"white",
-              border:"none",
-              padding:"14px",
-              borderRadius:"10px",
-              fontSize:"16px",
-              fontWeight:"bold",
-              cursor:"pointer",
+              background: "linear-gradient(135deg,#4facfe,#00f2fe)",
+              color: "white",
+              border: "none",
+              padding: "14px",
+              borderRadius: "10px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
             }}
           >
-            {loading
-              ? "Registering..."
-              : "Register"}
+            {loading ? "Registering..." : "Register"}
           </button>
 
           {error && (
             <p
               style={{
-                color:"red",
-                textAlign:"center",
+                color: "red",
+                textAlign: "center",
               }}
             >
               {error}
@@ -265,28 +209,21 @@ const handleSubmit = async (e) => {
 
         <div
           style={{
-            textAlign:"center",
-            marginTop:"20px",
+            textAlign: "center",
+            marginTop: "20px",
           }}
         >
-          <p>
-            Already have an
-            account?
-          </p>
+          <p>Already have an account?</p>
 
           <button
-            onClick={() =>
-              navigate(
-                "/login"
-              )
-            }
+            onClick={() => navigate("/login")}
             style={{
-              background:"#131921",
-              color:"white",
-              border:"none",
-              padding:"12px 20px",
-              borderRadius:"10px",
-              cursor:"pointer",
+              background: "#131921",
+              color: "white",
+              border: "none",
+              padding: "12px 20px",
+              borderRadius: "10px",
+              cursor: "pointer",
             }}
           >
             Login Now

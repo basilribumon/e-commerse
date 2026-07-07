@@ -7,33 +7,28 @@ export const fetchAdminDashboardData = createAsyncThunk(
   "adminDashboard/fetchAdminDashboardData",
   async (_, thunkAPI) => {
     try {
-      const [productsRes, usersRes, ordersRes] =
-        await Promise.all([
-          axios.get(`${API_URL}/products`),
-          axios.get(`${API_URL}/users`),
-          axios.get(`${API_URL}/orders`),
-        ]);
+      const [productsRes, usersRes, ordersRes] = await Promise.all([
+        axios.get(`${API_URL}/products`),
+        axios.get(`${API_URL}/users`),
+        axios.get(`${API_URL}/orders`),
+      ]);
 
-      const totalRevenue =
-        ordersRes.data.reduce(
-          (total, order) =>
-            total + Number(order.total || 0),
-          0
-        );
-
-     return {
-  totalProducts: productsRes.data.length,
-  totalUsers: usersRes.data.length,
-  totalOrders: ordersRes.data.length,
-  totalRevenue,
-  orders: ordersRes.data,   
-};
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.message
+      const totalRevenue = ordersRes.data.reduce(
+        (total, order) => total + Number(order.total || 0),
+        0,
       );
+
+      return {
+        totalProducts: productsRes.data.length,
+        totalUsers: usersRes.data.length,
+        totalOrders: ordersRes.data.length,
+        totalRevenue,
+        orders: ordersRes.data,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 const initialState = {
@@ -57,13 +52,13 @@ const adminDashboardSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAdminDashboardData.fulfilled, (state, action) => {
-  state.loading = false;
-  state.totalProducts = action.payload.totalProducts;
-  state.totalUsers = action.payload.totalUsers;
-  state.totalOrders = action.payload.totalOrders;
-  state.totalRevenue = action.payload.totalRevenue;
-  state.orders = action.payload.orders;
-})
+        state.loading = false;
+        state.totalProducts = action.payload.totalProducts;
+        state.totalUsers = action.payload.totalUsers;
+        state.totalOrders = action.payload.totalOrders;
+        state.totalRevenue = action.payload.totalRevenue;
+        state.orders = action.payload.orders;
+      })
       .addCase(fetchAdminDashboardData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;

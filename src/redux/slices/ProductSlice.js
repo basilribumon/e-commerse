@@ -1,24 +1,18 @@
-import {
-  createSlice,
-  createAsyncThunk,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import productService from "../../services/productService";
 
-export const fetchProducts =
-  createAsyncThunk(
-    "products/fetchProducts",
+export const fetchProducts = createAsyncThunk(
+  "products/fetchProducts",
 
-    async (_, thunkAPI) => {
-      try {
-        return await productService.getProducts();
-      } catch (error) {
-        return thunkAPI.rejectWithValue(
-          error.message
-        );
-      }
+  async (_, thunkAPI) => {
+    try {
+      return await productService.getProducts();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
-  );
+  },
+);
 
 const initialState = {
   products: [],
@@ -36,31 +30,20 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(
-        fetchProducts.pending,
-        (state) => {
-          state.loading = true;
-          state.error = null;
-        }
-      )
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
 
-      .addCase(
-        fetchProducts.fulfilled,
-        (state, action) => {
-          state.loading = false;
-          state.products =
-            action.payload;
-        }
-      )
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+      })
 
-      .addCase(
-        fetchProducts.rejected,
-        (state, action) => {
-          state.loading = false;
-          state.error =
-            action.payload;
-        }
-      );
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 

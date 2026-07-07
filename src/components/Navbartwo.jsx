@@ -2,13 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
-function Navbar({
-  handleLogout,
-}) {
+function Navbar({ handleLogout }) {
   const navigate = useNavigate();
 
-  const [showSettings, setShowSettings] =
-    useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   return (
     <div
@@ -44,77 +41,40 @@ function Navbar({
           alignItems: "center",
         }}
       >
-        <button
-          onClick={() =>
-            navigate("/")
-          }
-        >
-          Home
-        </button>
+        <button onClick={() => navigate("/")}>Home</button>
 
-        <button
-          onClick={() =>
-            navigate("/cart")
-          }
-        >
-          View Cart
-        </button>
+        <button onClick={() => navigate("/cart")}>View Cart</button>
 
-        <button
-          onClick={() =>
-            navigate("/wishlist")
-          }
-        >
-          View Wishlist
-        </button>
+        <button onClick={() => navigate("/wishlist")}>View Wishlist</button>
 
         <div
           style={{
             position: "relative",
           }}
         >
-          <button
-            onClick={() =>
-              setShowSettings(
-                !showSettings
-              )
-            }
-          >
+          <button onClick={() => setShowSettings(!showSettings)}>
             Settings ⚙️
           </button>
 
           {showSettings && (
             <div
               style={{
-                position:
-                  "absolute",
+                position: "absolute",
                 top: "40px",
                 right: "0",
-                background:
-                  "white",
+                background: "white",
                 padding: "10px",
-                borderRadius:
-                  "5px",
-                boxShadow:
-                  "0 2px 10px rgba(0,0,0,0.2)",
-                display:
-                  "flex",
-                flexDirection:
-                  "column",
+                borderRadius: "5px",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+                display: "flex",
+                flexDirection: "column",
                 gap: "10px",
-                minWidth:
-                  "120px",
+                minWidth: "120px",
               }}
             >
               <ThemeToggle />
 
-              <button
-                onClick={
-                  handleLogout
-                }
-              >
-                Logout
-              </button>
+              <button onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>

@@ -5,12 +5,11 @@ import authReducer from "./slices/authSlice";
 import cartReducer from "./slices/CartSlice";
 import wishlistReducer from "./slices/wishlistSlice";
 import orderReducer from "./slices/orderSlice";
-import adminReducer from "../admin/redux/adminSlice"
+import adminReducer from "../admin/redux/adminSlice";
 import adminDashboardReducer from "../admin/redux/adminDashboardSlice";
-import adminProductReducer from "../admin/redux/adminProductSlice"
-import adminUserReducer  from "../admin/redux/adminUserSlice"
+import adminProductReducer from "../admin/redux/adminProductSlice";
+import adminUserReducer from "../admin/redux/adminUserSlice";
 import adminOrderReducer from "../admin/redux/adminOrderSlice";
-
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +18,7 @@ export const store = configureStore({
     cart: cartReducer,
     wishlist: wishlistReducer,
     orders: orderReducer,
-    admin:adminReducer,
+    admin: adminReducer,
     adminDashboard: adminDashboardReducer,
     adminProducts: adminProductReducer,
     adminUsers: adminUserReducer,

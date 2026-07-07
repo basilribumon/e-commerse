@@ -2,42 +2,37 @@ import api from "./api";
 
 const authService = {
   register: async (userData) => {
-    const response = await api.post(
-      "/users",
-      userData
-    );
+    const response = await api.post("/users", userData);
 
     return response.data;
   },
 
-login: async (email, password) => {
-  console.log("Email:", email);
-  console.log("Password:", password);
+  login: async (email, password) => {
+    console.log("Email:", email);
+    console.log("Password:", password);
 
-  const response = await api.get("/users");
+    const response = await api.get("/users");
 
-  console.log("All Users:", response.data);
+    console.log("All Users:", response.data);
 
-  const user = response.data.find(
-    (u) =>
-      u.email.trim() === email.trim() &&
-      u.password.trim() === password.trim()
-  );
+    const user = response.data.find(
+      (u) =>
+        u.email.trim() === email.trim() &&
+        u.password.trim() === password.trim(),
+    );
 
-  console.log("Matched User:", user);
+    console.log("Matched User:", user);
 
+    if (!user) {
+      throw new Error("Invalid Email or Password");
+    }
 
-  if (!user) {
-    throw new Error("Invalid Email or Password");
-  }
+    if (user.blocked) {
+      throw new Error("Your account has been blocked by the admin.");
+    }
 
-
-  if (user.blocked) {
-    throw new Error("Your account has been blocked by the admin.");
-  }
-
-  return user;
-},
+    return user;
+  },
 };
 
 export default authService;

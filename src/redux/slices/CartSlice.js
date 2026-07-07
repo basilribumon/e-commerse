@@ -1,19 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const getCartItems = () => {
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) return [];
 
-  return (
-    JSON.parse(
-      localStorage.getItem(
-        `cart_${user.id}`
-      )
-    ) || []
-  );
+  return JSON.parse(localStorage.getItem(`cart_${user.id}`)) || [];
 };
 
 const initialState = {
@@ -26,103 +18,54 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    addToCart: (
-      state,
-      action
-    ) => {
-      state.cartItems.push(
-        action.payload
+    addToCart: (state, action) => {
+      state.cartItems.push(action.payload);
+
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (user) {
+        localStorage.setItem(
+          `cart_${user.id}`,
+          JSON.stringify(state.cartItems),
+        );
+      }
+    },
+
+    removeFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload,
       );
 
-      const user =
-        JSON.parse(
-          localStorage.getItem(
-            "user"
-          )
-        );
+      const user = JSON.parse(localStorage.getItem("user"));
 
       if (user) {
         localStorage.setItem(
           `cart_${user.id}`,
-          JSON.stringify(
-            state.cartItems
-          )
+          JSON.stringify(state.cartItems),
         );
       }
     },
 
-    removeFromCart: (
-      state,
-      action
-    ) => {
-      state.cartItems =
-        state.cartItems.filter(
-          (item) =>
-            item.id !==
-            action.payload
-        );
-
-      const user =
-        JSON.parse(
-          localStorage.getItem(
-            "user"
-          )
-        );
-
-      if (user) {
-        localStorage.setItem(
-          `cart_${user.id}`,
-          JSON.stringify(
-            state.cartItems
-          )
-        );
-      }
-    },
-
-    clearCart: (
-      state
-    ) => {
+    clearCart: (state) => {
       state.cartItems = [];
 
-      const user =
-        JSON.parse(
-          localStorage.getItem(
-            "user"
-          )
-        );
+      const user = JSON.parse(localStorage.getItem("user"));
 
       if (user) {
-        localStorage.removeItem(
-          `cart_${user.id}`
-        );
+        localStorage.removeItem(`cart_${user.id}`);
       }
     },
 
-    loadCart: (
-      state
-    ) => {
-      const user =
-        JSON.parse(
-          localStorage.getItem(
-            "user"
-          )
-        );
+    loadCart: (state) => {
+      const user = JSON.parse(localStorage.getItem("user"));
 
       state.cartItems =
-        JSON.parse(
-          localStorage.getItem(
-            `cart_${user.id}`
-          )
-        ) || [];
+        JSON.parse(localStorage.getItem(`cart_${user.id}`)) || [];
     },
   },
 });
 
-export const {
-  addToCart,
-  removeFromCart,
-  clearCart,
-  loadCart,
-} = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, loadCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
