@@ -2,6 +2,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminLayout from "../../layouts/AdminLayout";
 import { fetchAdminDashboardData } from "../redux/adminDashboardSlice";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 function AdminDashboard() {
   const dispatch = useDispatch();
@@ -11,6 +20,7 @@ const {
   totalUsers,
   totalOrders,
   totalRevenue,
+  orders,
   loading,
   error,
 } = useSelector((state) => state.adminDashboard);
@@ -18,6 +28,13 @@ const {
   useEffect(() => {
     dispatch(fetchAdminDashboardData());
   }, [dispatch]);
+
+const salesData = (orders || []).map((order) => ({
+  date: order.date.split(",")[0],
+  revenue: Number(order.total),
+}));
+console.log("Orders:", orders);
+console.log("Sales Data:", salesData);
 
   const cardStyle = {
     background: "white",
@@ -80,10 +97,39 @@ const {
   <h1 style={{ color: "#16a34a", margin: 0 }}>
     ₹{totalRevenue}
   </h1>
+  
 </div>
+
+
           </div>
         )}
       </div>
+      <div
+    style={{
+      background: "#fff",
+      padding: "20px",
+      borderRadius: "12px",
+      boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+    }}
+  >
+    <h2>📈 Sales Overview</h2>
+
+    <ResponsiveContainer width="100%" height={350}>
+      <LineChart data={salesData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Line
+          type="monotone"
+          dataKey="revenue"
+          stroke="#4F46E5"
+          strokeWidth={3}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+
     </AdminLayout>
   );
 }

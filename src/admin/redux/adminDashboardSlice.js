@@ -21,12 +21,13 @@ export const fetchAdminDashboardData = createAsyncThunk(
           0
         );
 
-      return {
-        totalProducts: productsRes.data.length,
-        totalUsers: usersRes.data.length,
-        totalOrders: ordersRes.data.length,
-        totalRevenue,
-      };
+     return {
+  totalProducts: productsRes.data.length,
+  totalUsers: usersRes.data.length,
+  totalOrders: ordersRes.data.length,
+  totalRevenue,
+  orders: ordersRes.data,   
+};
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.message
@@ -40,6 +41,7 @@ const initialState = {
   totalUsers: 0,
   totalOrders: 0,
   totalRevenue: 0,
+  orders: [],
   loading: false,
   error: null,
 };
@@ -60,6 +62,7 @@ const adminDashboardSlice = createSlice({
   state.totalUsers = action.payload.totalUsers;
   state.totalOrders = action.payload.totalOrders;
   state.totalRevenue = action.payload.totalRevenue;
+  state.orders = action.payload.orders;
 })
       .addCase(fetchAdminDashboardData.rejected, (state, action) => {
         state.loading = false;

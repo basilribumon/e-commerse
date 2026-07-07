@@ -8,7 +8,7 @@ import axios from "axios";
 const API =
   "http://localhost:3000/products";
 
-// Fetch Products
+
 export const deleteProduct = createAsyncThunk(
   "adminProducts/deleteProduct",
 
