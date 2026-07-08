@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import orderService from "../../services/orderService";
 
 export const placeOrder = createAsyncThunk(
