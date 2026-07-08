@@ -1,8 +1,4 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -16,89 +12,69 @@ import ProductDetails from "./pages/ProductDetails";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminLogin from "./admin/pagess/adminLogin";
 import AdminDashboard from "./admin/pagess/adminDashboard";
-import AdminProtectedRoute from "./admin/componentss/adminProtectedRoute"
+import AdminProtectedRoute from "./admin/componentss/adminProtectedRoute";
 import AdminProducts from "./admin/pagess/adminProducts";
 import AdminUsers from "./admin/pagess/adminUsers";
 import AdminOrders from "./admin/pagess/adminOrders";
-
-
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* ADMIN */}
+        <Route path="/admin-login" element={<AdminLogin />} />
+
         <Route
-         path="/admin-login"
-        element={<AdminLogin />}
-        />
-        
-        <Route
-        path="/admin/dashboard"
-        element={
-      <AdminProtectedRoute>
-        <AdminDashboard />
-      </AdminProtectedRoute>
-        }
-      />
-
-      <Route
-      path="/admin/products"
-      element={
-       <AdminProtectedRoute >
-        <AdminProducts />
-      </AdminProtectedRoute>
-     }
-    />
-
-    <Route
-      path="/admin/users"
-      element={
-        <AdminProtectedRoute>
-          <AdminUsers />
-        </AdminProtectedRoute>
-      }
-      />
-
-    <Route
-      path="/admin/orders"
-      element={
-        <AdminProtectedRoute>
-          <AdminOrders />
-        </AdminProtectedRoute>
-      }
-    />
-         
-
-
-
-       {/* USER */}
-        <Route
-          path="/"
-          element={<Home />}
+          path="/admin/dashboard"
+          element={
+            <AdminProtectedRoute>
+              <AdminDashboard />
+            </AdminProtectedRoute>
+          }
         />
 
-        
         <Route
-          path="/login"
-          element={<Login />}
+          path="/admin/products"
+          element={
+            <AdminProtectedRoute>
+              <AdminProducts />
+            </AdminProtectedRoute>
+          }
         />
 
-       
         <Route
-          path="/register"
-          element={<Register />}
+          path="/admin/users"
+          element={
+            <AdminProtectedRoute>
+              <AdminUsers />
+            </AdminProtectedRoute>
+          }
         />
 
-        
+        <Route
+          path="/admin/orders"
+          element={
+            <AdminProtectedRoute>
+              <AdminOrders />
+            </AdminProtectedRoute>
+          }
+        />
+
+        {/* USER */}
+        <Route path="/" element={<Home />} />
+
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/register" element={<Register />} />
+
         <Route
           path="/home"
-          element={<ProtectedRoute>
-            <Home />
-            </ProtectedRoute>}
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
         />
-
-        
 
         <Route
           path="/cart"
@@ -153,7 +129,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
       </Routes>
     </BrowserRouter>
   );
