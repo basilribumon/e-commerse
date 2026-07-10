@@ -22,17 +22,12 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(credentials);
-
     try {
-      const result = await dispatch(loginAdmin(credentials)).unwrap();
-
-      console.log(result);
+      await dispatch(loginAdmin(credentials)).unwrap();
 
       navigate("/admin/dashboard");
     } catch (error) {
-      console.log(error);
-      alert(error);
+      alert("invalid email or password");
     }
   };
   return (
