@@ -11,19 +11,12 @@ import Navbar from "../components/Navbar";
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { products, loading, error } = useSelector((state) => state.products);
-
   const { user } = useSelector((state) => state.auth);
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const productsPerPage = 14;
-
   const [searchTerm, setSearchTerm] = useState("");
-
   const [selectedCategory, setSelectedCategory] = useState("All");
-
   const [sortOrder, setSortOrder] = useState("");
 
   useEffect(() => {
@@ -65,14 +58,11 @@ function Home() {
   }
 
   const lastProductIndex = currentPage * productsPerPage;
-
   const firstProductIndex = lastProductIndex - productsPerPage;
-
   const currentProducts = filteredProducts.slice(
     firstProductIndex,
     lastProductIndex,
   );
-
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (

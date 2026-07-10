@@ -19,26 +19,22 @@ function AdminLogin() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      credentials.email === "admin@gmail.com" &&
-      credentials.password === "123456"
-    ) {
-      dispatch(
-        loginAdmin({
-          email: credentials.email,
-          name: "Admin",
-        }),
-      );
+    console.log(credentials);
+
+    try {
+      const result = await dispatch(loginAdmin(credentials)).unwrap();
+
+      console.log(result);
 
       navigate("/admin/dashboard");
-    } else {
-      alert("Invalid Admin Email or password");
+    } catch (error) {
+      console.log(error);
+      alert(error);
     }
   };
-
   return (
     <div
       style={{
