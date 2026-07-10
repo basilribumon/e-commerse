@@ -57,7 +57,6 @@ function AdminProducts() {
 
   return (
     <AdminLayout>
-      {/* Header */}
       <div
         style={{
           display: "flex",
@@ -90,7 +89,6 @@ function AdminProducts() {
             }}
           />
 
-          {/* Add Product */}
           <button
             onClick={() => setShowAddModal(true)}
             style={{
@@ -108,7 +106,6 @@ function AdminProducts() {
         </div>
       </div>
 
-      {/* Add Product Modal */}
       {showAddModal && (
         <div
           style={{
@@ -153,7 +150,6 @@ function AdminProducts() {
               }
             />
 
-            {/* Category */}
             <select
               style={inputStyle}
               value={newProduct.category}
@@ -176,7 +172,6 @@ function AdminProducts() {
               <option value="Nothing">Nothing</option>
             </select>
 
-            {/* Price */}
             <input
               style={inputStyle}
               type="number"
@@ -189,8 +184,6 @@ function AdminProducts() {
                 })
               }
             />
-
-            {/* Your Product Inputs Start Here */}
 
             <input
               style={inputStyle}
