@@ -7,6 +7,8 @@ const authService = {
     return response.data;
   },
 
+
+  
   login: async (email, password) => {
     console.log("Email:", email);
     console.log("Password:", password);
