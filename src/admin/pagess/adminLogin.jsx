@@ -6,7 +6,6 @@ import { loginAdmin } from "../redux/adminSlice";
 function AdminLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
