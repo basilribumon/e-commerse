@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
 
   const { loading, error } = useSelector((state) => state.auth);
-
   const [credentials, setCredential] = useState({
     email: "",
     password: "",
