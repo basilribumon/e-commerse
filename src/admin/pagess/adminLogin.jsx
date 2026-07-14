@@ -11,17 +11,14 @@ function AdminLogin() {
     email: "",
     password: "",
   });
-
   const handleChange = (e) => {
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await dispatch(loginAdmin(credentials)).unwrap();
 
