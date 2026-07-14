@@ -8,9 +8,7 @@ import { fetchAllOrders, updateOrderStatus } from "../redux/adminOrderSlice";
 function AdminOrders() {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
-
   const [selectedOrder, setSelectedOrder] = useState(null);
-
   const { orders, loading, error } = useSelector((state) => state.adminOrders);
 
   useEffect(() => {
