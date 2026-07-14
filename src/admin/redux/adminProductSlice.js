@@ -7,11 +7,8 @@ import axios from "axios";
 
 const API =
   "http://localhost:3000/products";
-
-
 export const deleteProduct = createAsyncThunk(
   "adminProducts/deleteProduct",
-
   async (id, thunkAPI) => {
     try {
       await axios.delete(

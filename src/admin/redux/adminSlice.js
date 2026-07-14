@@ -11,7 +11,6 @@ export const loginAdmin = createAsyncThunk(
     }
   },
 );
-
 const adminSlice = createSlice({
   name: "admin",
 
